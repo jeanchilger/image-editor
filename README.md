@@ -4,7 +4,7 @@
 # Image Editor
 
 A simple web based image editor implemented in order to apply some Computer Vision algorithms and techniques.
-The algorithms and techniques were in the most developed at the <a href="https://www.uffs.edu.br/campi/chapeco" target="_blank">UFFS</a>' *computer vision study group*.
+The algorithms and techniques were in the most developed at the [UFFS](https://www.uffs.edu.br/campi/chapeco)' *computer vision study group*.
 
 ## Main Functionalities
 
