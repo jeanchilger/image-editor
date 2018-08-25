@@ -14,7 +14,7 @@ The algorithms and techniques were in the most developed at the [UFFS](https://w
 
 ## Usage
 
-To use this web based image-editor follow these steps (temporary):
+To use this web based image-editor you can access this [link](https://jeanchilger.github.io/image-editor) or download the files as follows:
 ```
 git clone https://github.com/JeanCHilger/image-editor.git
 cd image-editor
