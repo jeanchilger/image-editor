@@ -3,8 +3,8 @@
 
 # Image Editor
 
-A simple image editor implemented in order to apply some Computer Vision algorithms and techniques.
-The algorithms and techniques were in the most developed at the UFFS' computer vision study group.
+A simple web based image editor implemented in order to apply some Computer Vision algorithms and techniques.
+The algorithms and techniques were in the most developed at the [UFFS](https://www.uffs.edu.br/campi/chapeco)' *computer vision study group*.
 
 ## Main Functionalities
 
@@ -32,4 +32,4 @@ start index.html
 open index.html
 ```
 
-Or simply download and decompress the zip file and open the `index.html` file with any browser.
+Or simply [download](https://github.com/JeanCHilger/image-editor/archive/master.zip) and decompress the zip file and open the `index.html` file with any browser.
