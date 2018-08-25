@@ -7,7 +7,7 @@ A simple image editor implemented in order to apply some Computer Vision algorit
 The algorithms and techniques were in the most developed at the UFFS' computer vision study group.
 
 ## Main Functionalities
------------------------
+
 - a
 - b
 - c
