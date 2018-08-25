@@ -11,3 +11,25 @@ The algorithms and techniques were in the most developed at the UFFS' computer v
 - a
 - b
 - c
+
+## Usage
+
+To use this web based image-editor follow these steps (temporary):
+'''
+git clone https://github.com/JeanCHilger/image-editor.git
+cd image-editor
+'''
+- Liunx
+'''
+xdg-open index.html
+'''
+- Windows
+'''
+start index.html
+'''
+- MacOSX
+'''
+open index.html
+'''
+
+Or simply download and decompress the zip file and open the 'index.html' file with any browser.
