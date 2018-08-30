@@ -13,7 +13,7 @@ header {
 } */
 
 .mainDraw {
-    background-color: #dfdfdf;
+    background-image: url("../img/background.png");
     background-repeat: repeat;
 
     height: 100%;

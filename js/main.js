@@ -1,6 +1,5 @@
 // main application object
 function App(name) {
-    this.name = name;
     this.loadImg = function () {
 
     },
@@ -12,5 +11,8 @@ function App(name) {
 
 // when the opencv.js was fully loaded
 $("#opencvJSFile").ready(function () {
-    var app = new App("asd");
+    var app = new App();
+    var c = document.getElementById('mainDraw');
+    var ctx = c.getContext("2d");
+    console.log(ctx);
 });
