@@ -1,9 +1,12 @@
+
 footer{
 	margin-top: 50%;
 	position: relative;
 	background-color: #eee;
 }
 
-li{
-    
+.mainDraw {
+    background: #c4c1c0;
+    height: 100%;
+    width: 100%;
 }
