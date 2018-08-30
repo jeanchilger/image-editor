@@ -16,12 +16,35 @@
         <header>
             <nav class="navbar navbar-light bg-light navbar-expand-md">
                 <!--  -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="">
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                    <!-- FILE SUBMENU -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Arquivo
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Carregar Imagem</a>
+                                <a class="dropdown-item" href="#">Salvar...</a>
+                            </div>
+                        </li>
 
+                    <!-- FILTER SUBMENU -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Filtros
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Carregar Imagem</a>
+                                <a class="dropdown-item" href="#">Salvar...</a>
+                            </div>
+                        </li>
+
+                    </ul>
                 </div>
             </nav>
 
