@@ -1,5 +1,5 @@
 [![Module](https://img.shields.io/badge/module-opencvjs-orange.svg?style=flat
-)](https://docs.opencv.org/3.4/df/df7/tutorial_js_table_of_contents_setup.html "OpecvJS Tutorials")
+)](https://docs.opencv.org/3.4.0/d5/d10/tutorial_js_root.html "OpecvJS Tutorials")
 
 # Image Editor
 
