@@ -1,5 +1,6 @@
 // main application object
-function App() {
+function App(name) {
+    this.name = name;
     this.loadImg = function () {
 
     },
@@ -10,6 +11,6 @@ function App() {
 };
 
 // when the opencv.js was fully loaded
-$("#opencvJSFile").ready(function(){
-    var app = new App();
+$("#opencvJSFile").ready(function () {
+    var app = new App("asd");
 });
