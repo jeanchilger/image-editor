@@ -1,12 +1,23 @@
-
 footer{
-	margin-top: 50%;
+	margin-top:;
 	position: relative;
-	background-color: #eee;
+	background-color: #f0f0f0;
 }
 
+/* main {
+    background-color: #656565;
+}
+
+header {
+    background-color: #e7e7e7;
+} */
+
 .mainDraw {
-    background: #c4c1c0;
+    background-color: #dfdfdf;
+    background-repeat: repeat;
+
     height: 100%;
     width: 100%;
+    /* padding: 1vmin; */
+    cursor: pointer;
 }
