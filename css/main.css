@@ -1,8 +1,8 @@
-footer{
-	margin-top:;
+/* footer{
+	margin-top: 10vh;
 	position: relative;
 	background-color: #f0f0f0;
-}
+} */
 
 /* main {
     background-color: #656565;
@@ -12,12 +12,26 @@ header {
     background-color: #e7e7e7;
 } */
 
-.mainDraw {
-    background-image: url("../img/background.png");
-    background-repeat: repeat;
+.outputImg {
+    /* background-image: url("../img/background.png");
+    background-repeat: repeat; */
+	background-color: #e0e9ec;
 
     height: 100%;
     width: 100%;
-    /* padding: 1vmin; */
-    cursor: pointer;
+    margin-top: 10vh;
+	border-radius: 0.7%;
+    cursor: crosshair;
 }
+
+img {
+	display: none;
+}
+
+/*SOMETHING LIKE THIS*/
+/* table tr:nth-child(odd) td:nth-child(even) {
+  background: #000;
+}
+table tr:nth-child(even) td:nth-child(odd) {
+  background: #000;
+} */
