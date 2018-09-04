@@ -10,6 +10,7 @@ function App() {
 
         fr.onload = function () {
             $("#inputImg").attr("src", fr.result);
+            $("#btnDownload").attr("href", fr.result);
         }
 
         fr.readAsDataURL(tgt.files[0]);
