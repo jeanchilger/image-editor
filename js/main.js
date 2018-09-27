@@ -25,7 +25,6 @@ function App() {
             mat.delete();
         };
     }
-
 };
 
 // when the opencv.js was fully loaded
