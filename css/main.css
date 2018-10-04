@@ -12,7 +12,7 @@ header {
     background-color: #e7e7e7;
 } */
 
-.outputImg {
+.output-img {
     /* background-image: url("../img/background.png");
     background-repeat: repeat; */
 	background-color: #e0e9ec;
@@ -25,7 +25,17 @@ header {
 }
 
 img {
+	margin-top: 5vh;
 	display: none;
+}
+
+.tool-box {
+	background-color: #eeeeee;
+	border-radius: 1%;
+}
+
+.tool-box a {
+	margin-top: 0.5vh;
 }
 
 /*SOMETHING LIKE THIS*/
