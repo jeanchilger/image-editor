@@ -1,3 +1,7 @@
+/* * {
+	border: 0.5px dashed red;
+} */
+
 /* footer{
 	margin-top: 10vh;
 	position: relative;
@@ -12,6 +16,10 @@ header {
     background-color: #e7e7e7;
 } */
 
+img {
+	display: none;
+}
+
 .output-img {
     /* background-image: url("../img/background.png");
     background-repeat: repeat; */
@@ -20,22 +28,18 @@ header {
     height: 100%;
     width: 100%;
     margin-top: 10vh;
-	border-radius: 0.7%;
+	border-radius: 0.7vh;
     cursor: crosshair;
 }
 
-img {
-	margin-top: 5vh;
-	display: none;
-}
-
 .tool-box {
+	margin-top: 10vh;
 	background-color: #eeeeee;
-	border-radius: 1%;
+	position: static;
 }
 
 .tool-box a {
-	margin-top: 0.5vh;
+	margin-top: .5vh;
 }
 
 /*SOMETHING LIKE THIS*/
