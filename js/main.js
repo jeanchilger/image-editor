@@ -18,7 +18,7 @@ function App() {
     },
 
     this.loadImgToCV = function () {
-        let imgElement = document.getElementById("inputImg");
+        let imgElement = $("#inputImg")[0];
         imgElement.onload = function () {
             let mat = cv.imread(imgElement);
             cv.imshow("outputImg", mat);
@@ -30,6 +30,8 @@ function App() {
 // when the opencv.js was fully loaded
 $("#opencvJSFile").ready(function () {
     var app = new App();
+    var filter = new FilterManager();
+    filter.fuck();
 
     // Load the image
     $("#fileInput").change(function(event) {
@@ -37,4 +39,14 @@ $("#opencvJSFile").ready(function () {
         app.loadImgToCV();
     });
 
+    // Filter triggers
+    $("#btnGrayScale").click(function() {
+        filter.grayScale("outputImg", "outputImg");
+    });
+
+
 });
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
