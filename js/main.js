@@ -44,6 +44,10 @@ $("#opencvJSFile").ready(function () {
         filter.grayScale("outputImg", "outputImg");
     });
 
+    $("#btnSepia").click(function() {
+        filter.sepia("outputImg", "outputImg");
+    });
+
 
 });
 
