@@ -44,6 +44,12 @@ $("#opencvJSFile").ready(function () {
         filter.grayScale("outputImg", "outputImg");
     });
 
+    $("#upload").click(function(event) {
+        console.log(event.target.nextElementSibling);
+        var event = new Event('build');
+        event.target.nextElementSibling.dispatchEvent(event);
+    });
+
 
 });
 
