@@ -31,7 +31,6 @@ function App() {
 $("#opencvJSFile").ready(function () {
     var app = new App();
     var filter = new FilterManager();
-    filter.fuck();
 
     // Load the image
     $("#fileInput").change(function(event) {
@@ -42,6 +41,10 @@ $("#opencvJSFile").ready(function () {
     // Filter triggers
     $("#btnGrayScale").click(function() {
         filter.grayScale("outputImg", "outputImg");
+    });
+
+    $("#btnSepia").click(function() {
+        filter.sepia("outputImg", "outputImg");
     });
 
 
