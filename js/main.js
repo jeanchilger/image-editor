@@ -10,7 +10,6 @@ function App() {
 
         fr.onload = function () {
             $("#inputImg").attr("src", fr.result);
-            $("#btnDownload").attr("href", fr.result);
         }
 
         fr.readAsDataURL(tgt.files[0]);
@@ -24,6 +23,12 @@ function App() {
             cv.imshow("outputImg", mat);
             mat.delete();
         };
+    },
+
+    this.downloadImage = function () {
+        let canvas = $("#outputImg")[0];
+        let img = canvas.toDataURL("image/png");
+        $("#btnDownload").attr("href", img);
     }
 };
 
@@ -45,6 +50,10 @@ $("#opencvJSFile").ready(function () {
 
     $("#btnSepia").click(function() {
         filter.sepia("outputImg", "outputImg");
+    });
+
+    $("#btnDownload").click(function() {
+        app.downloadImage();
     });
 
 

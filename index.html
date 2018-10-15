@@ -27,13 +27,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="kerSize">Kernel Size</label>
-                            <input type="number" class="form-control" id="kerSize">
+                            <input type="number" class="form-control" id="kerSize" min="1" max="25">
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Apply</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="triggerMorph">Apply</button>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,11 @@
                                 Arquivo
                             </a>
                             <div class="dropdown-menu">
+                                <!-- <div class="custom-file">
+                                    <input type="file" class="custom-file-input">
+                                </div> -->
                                 <input type="file" class="dropdown-item" id="fileInput">
-                                <!-- <button type="file" class="dropdown-item" id="fileInput">
-                                    Carregar Imagem
-                                </button> -->
+
                                 <a id="btnDownload" class="dropdown-item" href="#" download>Salvar...</a>
                             </div>
                         </li>
@@ -148,16 +149,13 @@
         </main>
 
     <!-- SOME RANDOM THING -->
-    <!-- <footer>
+    <!-- <footer class="shadow-sm bg-light">
         <div class="container-fluid p-3 p-md-5">
             <div class="col-md-12 col-sm-12">
                 <ul class = "bd-footer-links">
-                    <li><a href="#">Link1</a></li>
-                    <li><a href="#">Link2</a></li>
-                    <li><a href="#">Link3</a></li>
+                    <li><a href="#">UFFS</a></li>
                 </ul>
 
-                <p>TextTextTextTextTextText</p>
                 <p>Currently beta v0.0.1.</p>
             </div>
         </div>

@@ -43,9 +43,5 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    },
-
-    this.fuck = function () {
-        console.log(this);
     }
 };
