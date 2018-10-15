@@ -28,7 +28,7 @@ function App() {
     this.downloadImage = function () {
         let canvas = $("#outputImg")[0];
         let img = canvas.toDataURL("image/png");
-        $("#btnDownload").attr("href", img);
+        $("#triggerDownload").attr("href", img);
     }
 };
 
@@ -44,15 +44,15 @@ $("#opencvJSFile").ready(function () {
     });
 
     // Filter triggers
-    $("#btnGrayScale").click(function() {
+    $("#triggerGrayScale").click(function() {
         filter.grayScale("outputImg", "outputImg");
     });
 
-    $("#btnSepia").click(function() {
+    $("#triggerSepia").click(function() {
         filter.sepia("outputImg", "outputImg");
     });
 
-    $("#btnDownload").click(function() {
+    $("#triggerDownload").click(function() {
         app.downloadImage();
     });
 

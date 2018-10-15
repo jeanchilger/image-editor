@@ -20,7 +20,7 @@ img {
 	display: none;
 }
 
-.output-img {
+.output-img, .out-img-container{
     /* background-image: url("../img/background.png");
     background-repeat: repeat; */
 	background-color: #e0e9ec;

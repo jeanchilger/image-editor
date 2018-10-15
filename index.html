@@ -61,7 +61,7 @@
                                 </div> -->
                                 <input type="file" class="dropdown-item" id="fileInput">
 
-                                <a id="btnDownload" class="dropdown-item" href="#" download>Salvar...</a>
+                                <a id="triggerDownload" class="dropdown-item" href="#" download>Salvar...</a>
                             </div>
                         </li>
 
@@ -72,18 +72,18 @@
                             </a>
                             <div class="dropdown-menu">
                                 <h6 class="dropdown-header">Filters</h6>
-                                <a class="dropdown-item disabled" href="#" id="btnBlur">Blur</a>
-                                <a class="dropdown-item disabled" href="#" id="btnPixelize">Pixelize</a>
-                                <a class="dropdown-item disabled" href="#" id="btnSharpen">Sharpen</a>
-                                <a class="dropdown-item" href="#" id="btnSepia">Sépia</a>
-                                <a class="dropdown-item" href="#" id="btnGrayScale">Gray Scale</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerBlur">Blur</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerPixelize">Pixelize</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerSharpen">Sharpen</a>
+                                <a class="dropdown-item" href="#" id="triggerSepia">Sépia</a>
+                                <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
 
                                 <hr>
                                 <h6 class="dropdown-header">Binarization</h6>
 
-                                <a class="dropdown-item disabled" href="#" id="btnTresh">Thresholding</a>
-                                <a class="dropdown-item disabled" href="#" id="btnLaplace">Laplace</a>
-                                <a class="dropdown-item disabled" href="#" id="btnSobel">Sobel</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerTresh">Thresholding</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerLaplace">Laplace</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerSobel">Sobel</a>
 
                                 <hr>
                                 <h6 class="dropdown-header">Morphological Operations</h6>
@@ -100,8 +100,8 @@
                                 Color
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item disabled" href="#" id="btnColorHist">Color Histogram</a>
-                                <a class="dropdown-item disabled" href="#" id="btnColorSet">Brightness, Contrast, Saturation</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerColorHist">Color Histogram</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerColorSet">Brightness, Contrast, Saturation</a>
                             </div>
                         </li>
 
@@ -141,7 +141,7 @@
 
                 </div>
 
-                <div class="col-md-8 offset-md-1">
+                <div class="col-md-8 offset-md-1 out-img-container">
                     <img id="inputImg" src=""></img>
                     <canvas class="output-img" id="outputImg"></canvas>
                 </div>
