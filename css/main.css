@@ -24,12 +24,6 @@ img {
     /* background-image: url("../img/background.png");
     background-repeat: repeat; */
 	background-color: #e0e9ec;
-
-    height: 100%;
-    width: 100%;
-    margin-top: 10vh;
-	border-radius: 0.7vh;
-    cursor: crosshair;
 }
 
 .tool-box {
