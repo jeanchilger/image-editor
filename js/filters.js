@@ -1,9 +1,10 @@
 function FilterManager() {
     this.grayScale = function(inputImg, outputImg) {
         /*
-         * inputImg and outputImg -> string
-         * */
-
+         * inputImg -> (string) the id of the canvas that contains the source image.
+         * outputImg -> (string) the id of the canvas that is the destination.
+         * Converts the inputImg to gray scale and put it in outputImg.
+        */
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
@@ -15,11 +16,6 @@ function FilterManager() {
     },
 
     this.sepia = function(inputImg, outputImg) {
-        /*
-         Applies the sepia filter.
-         inputImg -> string, outputImg -> string;
-        */
-
         let src = cv.imread(inputImg);
         let dst = src.clone();
 
@@ -43,5 +39,27 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
+    },
+
+    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+        let src = cv.imread("inputImg");
+
+        cv.dilate(src, src, kernel);
+        cv.imshow(outputImg, src);
+        src.delete();
+    },
+
+    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+        let src = cv.imread("inputImg");
+
+        cv.erode(src, src, kernel);
+        cv.imshow(outputImg, src);
+        src.delete();
     }
 };

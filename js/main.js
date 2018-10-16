@@ -1,6 +1,6 @@
 function App() {
     // main application 'object'
-    this.loadImgFromFile = function (event) {
+    this.loadImgFromFile = function(event) {
         /*
         Load the image from input file.
         There is a better way??
@@ -8,7 +8,7 @@ function App() {
         var tgt = event.target;
         var fr = new FileReader();
 
-        fr.onload = function () {
+        fr.onload = function() {
             $("#inputImg").attr("src", fr.result);
         }
 
@@ -16,7 +16,7 @@ function App() {
 
     },
 
-    this.loadImgToCV = function () {
+    this.loadImgToCV = function() {
         let imgElement = $("#inputImg")[0];
         imgElement.onload = function () {
             let mat = cv.imread(imgElement);
@@ -25,15 +25,16 @@ function App() {
         };
     },
 
-    this.downloadImage = function () {
+    this.downloadImage = function() {
         let canvas = $("#outputImg")[0];
+        alert(canvas);
         let img = canvas.toDataURL("image/png");
         $("#triggerDownload").attr("href", img);
     }
 };
 
 // when the opencv.js was fully loaded
-$("#opencvJSFile").ready(function () {
+$("#opencvJSFile").ready(function() {
     var app = new App();
     var filter = new FilterManager();
 
@@ -56,9 +57,16 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
+    $("#triggerDilate").click(function() {
+        filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());
+    });
+
+    $("#triggerErode").click(function() {
+        filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
+    });
 
 });
 
-$(function () {
+$(function() {
   $('[data-toggle="tooltip"]').tooltip()
 })

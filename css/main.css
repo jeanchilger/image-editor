@@ -40,7 +40,8 @@ img {
     background-repeat: repeat; */
     background-color: #e0e9ec;
     border-radius: 0.7vh;
-    cursor: crosshair;
+    /*cursor: cell;*/
+    cursor: url("../img/icons/pen.png"), auto;
     padding: 1vh;
     height: 70vh;
     width: 99vh;
