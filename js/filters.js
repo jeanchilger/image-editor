@@ -8,6 +8,8 @@ function FilterManager() {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
+        console.log(dst);
+
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
         cv.imshow(outputImg, dst);
 
@@ -61,5 +63,24 @@ function FilterManager() {
         cv.erode(src, src, kernel);
         cv.imshow(outputImg, src);
         src.delete();
+    },
+
+    this.sharpen = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+
+        let array = [
+                    [1, 1, 1],
+                    [1, 1, 1],
+                    [1, 1, 1]
+                    ]
+        let kernel = cv.matFromArray(3, 3, cv.CV_8UC1, array);
+
+        let anchor = new cv.Point(-1, -1);
+        cv.filter2D(src, src, cv.CV_8UC1, kernel,
+                    anchor, 0, cv.BORDER_DEFAULT);
+        cv.imshow(outputImg, src);
+
+        src.delete();
+        kernel.delete();
     }
 };

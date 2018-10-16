@@ -65,6 +65,10 @@ $("#opencvJSFile").ready(function() {
         filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
     });
 
+    $("#triggerSharpen").click(function() {
+        filter.sharpen("outputImg", "outputImg");
+    });
+
 });
 
 $(function() {
