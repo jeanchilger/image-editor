@@ -1,6 +1,9 @@
-var tools = {
-
-    print : function (){
-        console.log("Ola Mundo");
+var pen = {
+    ola : function(){
+        alert("Ola mundo");
     }
-}
+};
+
+$("#pen").click(function(){
+    pen.ola();
+});
