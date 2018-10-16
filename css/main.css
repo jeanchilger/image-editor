@@ -60,6 +60,14 @@ img {
     margin-top: .5vh;
 }
 
+.input-file {
+    display: none;
+}
+
+.inp-file-label {
+    cursor: pointer;
+}
+
 /*SOMETHING LIKE THIS*/
 /* table tr:nth-child(odd) td:nth-child(even) {
   background: #000;
