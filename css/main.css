@@ -1,13 +1,29 @@
+/*
+	##CONVENTION##
+
+elem {
+	color
+	background
+
+	border
+
+	other style properties
+
+	display
+
+	sizing
+	padding
+	marign
+}
+*/
 /* * {
 	border: 0.5px dashed red;
 } */
-
 /* footer{
 	margin-top: 10vh;
 	position: relative;
 	background-color: #f0f0f0;
 } */
-
 /* main {
     background-color: #656565;
 }
@@ -15,31 +31,33 @@
 header {
     background-color: #e7e7e7;
 } */
-
 img {
-	display: none;
+    display: none;
 }
 
-.output-img, .out-img-container{
+.out-img-container {
     /* background-image: url("../img/background.png");
     background-repeat: repeat; */
-	background-color: #e0e9ec;
-
-    height: 100%;
-    width: 100%;
-    margin-top: 10vh;
-	border-radius: 0.7vh;
+    background-color: #e0e9ec;
+    border-radius: 0.7vh;
     cursor: crosshair;
+    padding: 1vh;
+    height: 70vh;
+    width: 99vh;
+    display: flex;
+    margin-top: 10vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .tool-box {
-	margin-top: 10vh;
-	background-color: #eeeeee;
-	position: static;
+    background-color: #eeeeee;
+    margin-top: 10vh;
+    position: static;
 }
 
 .tool-box a {
-	margin-top: .5vh;
+    margin-top: .5vh;
 }
 
 /*SOMETHING LIKE THIS*/
