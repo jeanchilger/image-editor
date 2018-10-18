@@ -8,9 +8,9 @@ function Tools(){
         self = this;
 
         this.init = function(){
-            let rect = $("#outputImg")[0].getBoundingClientRect();
 
              $("#outputImg").mousedown(function(event){
+                rect = $("#outputImg")[0].getBoundingClientRect();
                 self.paint = true;
                 self.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
                  if(self.prevX == null){
@@ -20,7 +20,8 @@ function Tools(){
              });
 
              $("#outputImg").mousemove(function(event){
-                if (self.paint){
+                 rect = $("#outputImg")[0].getBoundingClientRect();
+                 if (self.paint){
                     if(self.prevX == null){
                         self.prevX = event.pageX - rect.left;
                         self.prevY = event.pageY - rect.top;

@@ -38,6 +38,11 @@ $("#opencvJSFile").ready(function () {
     var tools = new Tools();
     var filter = new FilterManager();
 
+    //set canvas size
+    $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
+    $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
+
+
     // Load the image
     $("#fileInput").change(function(event) {
         app.loadImgFromFile(event);
