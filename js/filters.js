@@ -101,5 +101,14 @@ function FilterManager() {
         src.delete();
         small.delete();
         normal.delete();
+    },
+
+    this.thresholding = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
+        cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
+        cv.adaptiveThreshold(dst, dst, 200, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 3, 2);
+
+        cv.imshow(outputImg, dst);
     }
 };

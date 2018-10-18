@@ -73,6 +73,10 @@ $("#opencvJSFile").ready(function() {
         filter.pixelize("outputImg", "outputImg");
     });
 
+    $("#triggerTresh").click(function() {
+        filter.thresholding("outputImg", "outputImg");
+    });
+
 });
 
 $(function() {
