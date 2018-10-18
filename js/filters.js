@@ -69,10 +69,10 @@ function FilterManager() {
         let src = cv.imread(inputImg);
 
         let array = [
-                    [1, 1, 1],
-                    [1, 1, 1],
-                    [1, 1, 1]
-                    ]
+                    [0, -1, 0],
+                    [-1, 5, -1],
+                    [0, -1, 0]
+                ]; //acertar esse filtro
         let kernel = cv.matFromArray(3, 3, cv.CV_8UC1, array);
 
         let anchor = new cv.Point(-1, -1);
@@ -82,5 +82,31 @@ function FilterManager() {
 
         src.delete();
         kernel.delete();
+    },
+
+    this.pixelize = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+
+        console.log('image width: ' + src.cols + '\n' +
+            'image height: ' + src.rows + '\n' +
+            'image size: ' + src.size().width + '*' + src.size().height + '\n' +
+            'image depth: ' + src.depth() + '\n' +
+            'image channels ' + src.channels() + '\n' +
+            'image type: ' + src.type() + '\n');
+
+        let reduce = 10;
+        let small_size = new cv.Size(parseInt(src.rows/reduce),
+                                     parseInt(src.cols/reduce));
+        let small = new cv.Mat(small_size, src.type());
+        let normal = new cv.Mat(src.size(), src.type());
+
+        cv.resize(src, small, small.size(), 0, 0, cv.INTER_NEAREST);
+        cv.resize(small, normal, normal.size(), 0, 0, cv.INTER_NEAREST);
+
+        cv.imshow(outputImg, normal);
+
+        src.delete();
+        small.delete();
+        normal.delete();
     }
 };

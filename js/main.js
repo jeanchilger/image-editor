@@ -69,6 +69,10 @@ $("#opencvJSFile").ready(function() {
         filter.sharpen("outputImg", "outputImg");
     });
 
+    $("#triggerPixelize").click(function() {
+        filter.pixelize("outputImg", "outputImg");
+    });
+
 });
 
 $(function() {
