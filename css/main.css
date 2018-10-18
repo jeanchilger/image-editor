@@ -1,6 +1,5 @@
 /*
 	##CONVENTION##
-
 elem {
 	color
 	background
@@ -27,7 +26,6 @@ elem {
 /* main {
     background-color: #656565;
 }
-
 header {
     background-color: #e7e7e7;
 } */
@@ -58,6 +56,14 @@ img {
 
 .tool-box a {
     margin-top: .5vh;
+}
+
+.input-file {
+    display: none;
+}
+
+.inp-file-label {
+    cursor: pointer;
 }
 
 /*SOMETHING LIKE THIS*/

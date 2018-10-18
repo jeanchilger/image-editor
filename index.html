@@ -53,14 +53,15 @@
                     <!-- FILE SUBMENU -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
-                                Arquivo
+                                File
                             </a>
                             <div class="dropdown-menu">
                                 <!-- <div class="custom-file">
                                     <input type="file" class="custom-file-input">
                                 </div> -->
-                                <input type="file" class="dropdown-item" id="fileInput">
 
+                                <input type="file" class="dropdown-item input-file" id="fileInput">
+                                <label class="dropdown-item inp-file-label" for="fileInput">Upload image</label>
                                 <a id="triggerDownload" class="dropdown-item" href="#" download>Salvar...</a>
                             </div>
                         </li>
@@ -77,6 +78,7 @@
                                 <a class="dropdown-item disabled" href="#" id="triggerSharpen">Sharpen</a>
                                 <a class="dropdown-item" href="#" id="triggerSepia">Sépia</a>
                                 <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
+
 
                                 <hr>
                                 <h6 class="dropdown-header">Binarization</h6>
@@ -144,7 +146,9 @@
                 <div class="col-md-8 offset-md-1 out-img-container">
                     <!-- <center> -->
                         <img id="inputImg" src=""></img>
+
                         <canvas class="output-img" id="outputImg"></canvas>
+
                     <!-- </center> -->
                 </div>
             </div>
@@ -157,6 +161,7 @@
                 <ul class = "bd-footer-links">
                     <li><a href="#">UFFS</a></li>
                 </ul>
+
 
                 <p>Currently beta v0.0.1.</p>
             </div>

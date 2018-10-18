@@ -61,11 +61,8 @@ $("#opencvJSFile").ready(function () {
         let pen = new tools.Pen();
         pen.init();
     });
-
-
-
 });
 
-$(function () {
+$(function() {
   $('[data-toggle="tooltip"]').tooltip()
-});
+})
