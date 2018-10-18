@@ -87,14 +87,7 @@ function FilterManager() {
     this.pixelize = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
 
-        console.log('image width: ' + src.cols + '\n' +
-            'image height: ' + src.rows + '\n' +
-            'image size: ' + src.size().width + '*' + src.size().height + '\n' +
-            'image depth: ' + src.depth() + '\n' +
-            'image channels ' + src.channels() + '\n' +
-            'image type: ' + src.type() + '\n');
-
-        let reduce = 10;
+        let reduce = 5;
         let small_size = new cv.Size(parseInt(src.rows/reduce),
                                      parseInt(src.cols/reduce));
         let small = new cv.Mat(small_size, src.type());
