@@ -35,6 +35,7 @@ function App() {
 // when the opencv.js was fully loaded
 $("#opencvJSFile").ready(function () {
     var app = new App();
+    var tools = new Tools();
     var filter = new FilterManager();
 
     // Load the image
@@ -56,9 +57,15 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
+    $("#penTrigger").click(function(){
+        let pen = new tools.Pen();
+        pen.init();
+    });
+
+
 
 });
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
