@@ -56,51 +56,47 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
+    $("#triggerPen").click(function(){
+        var pen = new Pen();
+        var rect = $("#outputImg")[0].getBoundingClientRect();
 
-});
+        $("#outputImg").mousedown(function(event){
+            pen.paint = true;
+            pen.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
-
-//Event listners - tools
-//Pen
-$("#triggerPen").click(function(){
-    var pen = new Pen();
-    var rect = $("#outputImg")[0].getBoundingClientRect();
-
-    $("#outputImg").mousedown(function(event){
-        pen.paint = true;
-        pen.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
-
-        if(pen.prevX == null){
-            pen.prevX = event.pageX - rect.left;
-            pen.prevY = event.pageY - rect.top;
-        }
-    });
-
-    $("#outputImg").mousemove(function(event){
-        if (pen.paint){
             if(pen.prevX == null){
                 pen.prevX = event.pageX - rect.left;
                 pen.prevY = event.pageY - rect.top;
             }
-            pen.draw(event.pageX - rect.left, event.pageY - rect.top);
-            pen.prevX = event.pageX - rect.left;
-            pen.prevY = event.pageY - rect.top;
-        }
+        });
+
+        $("#outputImg").mousemove(function(event){
+            if (pen.paint){
+                if(pen.prevX == null){
+                    pen.prevX = event.pageX - rect.left;
+                    pen.prevY = event.pageY - rect.top;
+                }
+                pen.draw(event.pageX - rect.left, event.pageY - rect.top);
+                pen.prevX = event.pageX - rect.left;
+                pen.prevY = event.pageY - rect.top;
+            }
+
+        });
+
+        $("#outputImg").mouseup(function(event){
+            pen.paint = false;
+            pen.prevX = null;
+        });
+
+        $("#outputImg").mouseleave(function(event){
+            pen.paint = false;
+            pen.prevX = null;
+            pen.prevY = null;
+        });
 
     });
+});
 
-    $("#outputImg").mouseup(function(event){
-        pen.paint = false;
-        pen.prevX = null;
-    });
-
-    $("#outputImg").mouseleave(function(event){
-        pen.paint = false;
-        pen.prevX = null;
-        pen.prevY = null;
-    });
-
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip()
 });
