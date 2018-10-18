@@ -10,7 +10,6 @@ function App() {
 
         fr.onload = function () {
             $("#inputImg").attr("src", fr.result);
-            $("#btnDownload").attr("href", fr.result);
         }
 
         fr.readAsDataURL(tgt.files[0]);
@@ -24,6 +23,12 @@ function App() {
             cv.imshow("outputImg", mat);
             mat.delete();
         };
+    },
+
+    this.downloadImage = function () {
+        let canvas = $("#outputImg")[0];
+        let img = canvas.toDataURL("image/png");
+        $("#triggerDownload").attr("href", img);
     }
 };
 
@@ -31,7 +36,6 @@ function App() {
 $("#opencvJSFile").ready(function () {
     var app = new App();
     var filter = new FilterManager();
-    filter.fuck();
 
     // Load the image
     $("#fileInput").change(function(event) {
@@ -40,14 +44,16 @@ $("#opencvJSFile").ready(function () {
     });
 
     // Filter triggers
-    $("#btnGrayScale").click(function() {
+    $("#triggerGrayScale").click(function() {
         filter.grayScale("outputImg", "outputImg");
     });
 
-    $("#upload").click(function(event) {
-        console.log(event.target.nextElementSibling);
-        var event = new Event('build');
-        event.target.nextElementSibling.dispatchEvent(event);
+    $("#triggerSepia").click(function() {
+        filter.sepia("outputImg", "outputImg");
+    });
+
+    $("#triggerDownload").click(function() {
+        app.downloadImage();
     });
 
 
@@ -55,4 +61,46 @@ $("#opencvJSFile").ready(function () {
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+
+//Event listners - tools
+//Pen
+$("#triggerPen").click(function(){
+    var pen = new Pen();
+    var rect = $("#outputImg")[0].getBoundingClientRect();
+
+    $("#outputImg").mousedown(function(event){
+        pen.paint = true;
+        pen.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
+
+        if(pen.prevX == null){
+            pen.prevX = event.pageX - rect.left;
+            pen.prevY = event.pageY - rect.top;
+        }
+    });
+
+    $("#outputImg").mousemove(function(event){
+        if (pen.paint){
+            if(pen.prevX == null){
+                pen.prevX = event.pageX - rect.left;
+                pen.prevY = event.pageY - rect.top;
+            }
+            pen.draw(event.pageX - rect.left, event.pageY - rect.top);
+            pen.prevX = event.pageX - rect.left;
+            pen.prevY = event.pageY - rect.top;
+        }
+
+    });
+
+    $("#outputImg").mouseup(function(event){
+        pen.paint = false;
+        pen.prevX = null;
+    });
+
+    $("#outputImg").mouseleave(function(event){
+        pen.paint = false;
+        pen.prevX = null;
+        pen.prevY = null;
+    });
+
+});
