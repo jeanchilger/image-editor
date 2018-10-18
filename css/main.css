@@ -3,9 +3,13 @@
 elem {
 	color
 	background
+
 	border
+
 	other style properties
+
 	display
+
 	sizing
 	padding
 	marign
@@ -52,6 +56,14 @@ img {
 
 .tool-box a {
     margin-top: .5vh;
+}
+
+.input-file {
+    display: none;
+}
+
+.inp-file-label {
+    cursor: pointer;
 }
 
 /*SOMETHING LIKE THIS*/

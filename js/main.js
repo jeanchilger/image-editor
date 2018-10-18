@@ -64,6 +64,7 @@ $("#opencvJSFile").ready(function () {
             pen.paint = true;
             pen.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
 
+
             if(pen.prevX == null){
                 pen.prevX = event.pageX - rect.left;
                 pen.prevY = event.pageY - rect.top;
