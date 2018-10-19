@@ -54,7 +54,7 @@ img {
     position: static;
 }
 
-.tool-box a {
+.tool-box a, .jscolor {
     margin-top: .5vh;
 }
 
@@ -64,6 +64,12 @@ img {
 
 .inp-file-label {
     cursor: pointer;
+}
+
+.jscolor{
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /*SOMETHING LIKE THIS*/
