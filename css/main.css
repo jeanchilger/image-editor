@@ -38,6 +38,7 @@ img {
     background-repeat: repeat; */
     background-color: #e0e9ec;
     border-radius: 0.7vh;
+    /*cursor: cell;*/
     cursor: crosshair;
     padding: 1vh;
     height: 70vh;
