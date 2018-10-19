@@ -8,7 +8,7 @@
 
         <link rel="icon" href="img/favicon.png">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
@@ -86,14 +86,15 @@
                     <!-- FILE SUBMENU -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
-                                Arquivo
+                                File
                             </a>
                             <div class="dropdown-menu">
                                 <!-- <div class="custom-file">
                                     <input type="file" class="custom-file-input">
                                 </div> -->
-                                <input type="file" class="dropdown-item" id="fileInput">
 
+                                <input type="file" class="dropdown-item input-file" id="fileInput">
+                                <label class="dropdown-item inp-file-label" for="fileInput">Upload image</label>
                                 <a id="triggerDownload" class="dropdown-item" href="#" download>Salvar...</a>
                             </div>
                         </li>
@@ -110,6 +111,7 @@
                                 <a class="dropdown-item disabled" href="#" id="triggerSharpen">Sharpen</a>
                                 <a class="dropdown-item" href="#" id="triggerSepia">Sépia</a>
                                 <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
+
 
                                 <hr>
                                 <h6 class="dropdown-header">Binarization</h6>
@@ -150,34 +152,48 @@
 
                 <div class="col-md-1 tool-box shadow-sm bg-white rounded">
                     <div class="row">
-                        <a href="#" class="icon col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Pincel">
+
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" id="penTrigger" data-toggle="tooltip" data-placement="right" title="Pincel">
+                            <i class="material-icons">
+                                edit
+                            </i>
+                        </a>
+
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Redimensionar">
+                            <i class="material-icons">
+                                crop_free
+                            </i>
+                        </a>
+
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Rotacionar">
+                            <i class="material-icons">
+                                loop
+                            </i>
+                        </a>
+
+
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Cortar Imagem">
+                            <i class="material-icons">
+                                crop
+                            </i>
+                        </a>
+
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Espelhar Verticalmente">
                             <i class="fas fa-pen"></i>
                         </a>
 
-                        <a href="#" class="icon col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Redimensionar">
-                            <i class="fas fa-expand-arrows-alt"></i>
-                        </a>
-
-                        <a href="#" class="icon col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Rotacionar">
-                            <i class="fas fa-redo-alt"></i>
-                        </a>
-
-                        <a href="#" class="icon col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Cortar Imagem">
-                            <i class="fas fa-pen"></i>
-                        </a>
-
-                        <a href="#" class="icon col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Rotacionar">
-                            <i class="fas fa-pen"></i>
-                        </a>
+                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color">
 
                     </div>
 
                 </div>
 
-                <div class="col-md-8 offset-md-1 out-img-container">
+                <div class="col-md-8 offset-md-1 out-img-container" id="outImgContainer">
                     <!-- <center> -->
                         <img id="inputImg" src=""></img>
+
                         <canvas class="output-img" id="outputImg"></canvas>
+
                     <!-- </center> -->
                 </div>
             </div>
@@ -191,17 +207,22 @@
                     <li><a href="#">UFFS</a></li>
                 </ul>
 
+
                 <p>Currently beta v0.0.1.</p>
             </div>
         </div>
     </footer> -->
 
-        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/utils.js" type="text/javascript"></script>
-        <script src="js/opencv.js" type="text/javascript" id="opencvJSFile"></script>
-        <script src="js/filters.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/jquery-3.3.1.min.js" charset="utf-8"></script>
+        <script src="js/bootstrap.bundle.min.js" charset="utf-8"></script>
+        <script src="js/utils.js" charset="utf-8"></script>
+        <script src="js/opencv.js" charset="utf-8" id="opencvJSFile"></script>
+        <script src="js/filters.js" charset="utf-8"></script>
+        <script src="js/tools.js" charset="utf-8"></script>
+        <script src="js/jscolor.js" charset="utf-8"></script>
+        <script src="js/main.js" charset="utf-8"></script>
+
+
 
     </body>
 </html>

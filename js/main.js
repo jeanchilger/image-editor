@@ -36,7 +36,13 @@ function App() {
 // when the opencv.js was fully loaded
 $("#opencvJSFile").ready(function() {
     var app = new App();
+    var tools = new Tools();
     var filter = new FilterManager();
+
+    //set canvas size
+    $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
+    $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
+
 
     // Load the image
     $("#fileInput").change(function(event) {
@@ -81,6 +87,21 @@ $("#opencvJSFile").ready(function() {
         filter.sobel("outputImg", "outputImg");
     });
 
+    $("#triggerPen").click(function(){
+        let pen = new tools.Pen();
+        pen.color = "#" + $(".jscolor")[0].value;
+        pen.init();
+        $(".jscolor").change(function(){
+            pen.color = "#" + $(".jscolor")[0].value;
+
+        });
+
+
+    });
+
+    $("#triggerCutImg").click(function(){
+        let imgCutter = new tools.ImgCutter();
+    });
 });
 
 $(function() {

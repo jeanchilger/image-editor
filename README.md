@@ -1,4 +1,4 @@
-[![Module](https://img.shields.io/badge/module-opencvjs-orange.svg?style=flat
+[![Module](https://img.shields.io/badge/opencvjs-3.4.0-red.svg?style=flat
 )](https://docs.opencv.org/3.4.0/d5/d10/tutorial_js_root.html "OpecvJS Tutorials")
 
 # Image Editor

@@ -1,6 +1,5 @@
 /*
 	##CONVENTION##
-
 elem {
 	color
 	background
@@ -27,7 +26,6 @@ elem {
 /* main {
     background-color: #656565;
 }
-
 header {
     background-color: #e7e7e7;
 } */
@@ -57,8 +55,22 @@ img {
     position: static;
 }
 
-.tool-box a {
+.tool-box a, .jscolor {
     margin-top: .5vh;
+}
+
+.input-file {
+    display: none;
+}
+
+.inp-file-label {
+    cursor: pointer;
+}
+
+.jscolor{
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /*SOMETHING LIKE THIS*/
