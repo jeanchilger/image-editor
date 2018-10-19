@@ -62,9 +62,18 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
-    $("#penTrigger").click(function(){
+    $("#triggerPen").click(function(){
         let pen = new tools.Pen();
+        pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
+
+        $(".jscolor").click(function(){
+            $("#palete").click(function(){
+                pen.color = "#" + $(".jscolor")[0].value;
+                console.log(pen.color);
+            });
+        });
+
     });
 });
 

@@ -855,7 +855,7 @@ var jsc = {
 					break;
 				}
 			};
-			
+
 			paletteObj.elm = vmlContainer;
 			paletteObj.draw = drawFunc;
 		}
@@ -926,7 +926,7 @@ var jsc = {
 				grad.color = color1;
 				grad.color2 = color2;
 			};
-			
+
 			sliderObj.elm = vmlContainer;
 			sliderObj.draw = drawFunc;
 		}
@@ -1493,6 +1493,7 @@ var jsc = {
 			p.padB.style.borderColor = THIS.insetColor;
 
 			// pad mouse area
+			p.padM.id = 'palete';
 			p.padM._jscInstance = THIS;
 			p.padM._jscControlName = 'pad';
 			p.padM.style.position = 'absolute';
@@ -1815,9 +1816,9 @@ var jsc = {
 		if (this.value) {
 			// Try to set the color from the .value option and if unsuccessful,
 			// export the current color
-			this.fromString(this.value) || this.exportColor();
+			//this.fromString(this.value) || this.exportColor();
 		} else {
-			this.importColor();
+			//this.importColor();
 		}
 	}
 

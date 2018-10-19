@@ -54,7 +54,7 @@ img {
     position: static;
 }
 
-.tool-box a {
+.tool-box a, .jscolor {
     margin-top: .5vh;
 }
 

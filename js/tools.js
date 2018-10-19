@@ -5,6 +5,7 @@ function Tools(){
         let paint = false;
         let prevX = null;
         let prevY = null;
+        let color = "#000";
         self = this;
 
         this.init = function(){
@@ -46,7 +47,7 @@ function Tools(){
         };
 
         this.draw = function(x, y){
-            context.strokeStyle = "#df4b26";
+            context.strokeStyle = this.color;
             context.lineJoin = "round";
             context.lineWidth = 5;
             context.beginPath();
@@ -59,8 +60,8 @@ function Tools(){
         this.drawPoint = function(x, y){
             context.beginPath();
             context.arc(x, y, 2, 0,2*Math.PI);
-            context.strokeStyle = "#df4b26";
-            context.fillStyle = "#df4b26";
+            context.strokeStyle = this.color;
+            context.fillStyle = this.color;
             context.lineWidth = 2;
             context.fill();
             //context.closePath();
