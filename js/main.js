@@ -77,6 +77,10 @@ $("#opencvJSFile").ready(function() {
         filter.thresholding("outputImg", "outputImg");
     });
 
+    $("#triggerSobel").click(function() {
+        filter.sobel("outputImg", "outputImg");
+    });
+
 });
 
 $(function() {

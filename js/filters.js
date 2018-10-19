@@ -1,16 +1,10 @@
 function FilterManager() {
     this.grayScale = function(inputImg, outputImg) {
-        /*
-         * inputImg -> (string) the id of the canvas that contains the source image.
-         * outputImg -> (string) the id of the canvas that is the destination.
-         * Converts the inputImg to gray scale and put it in outputImg.
-        */
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
-        console.log(dst);
-
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
+
         cv.imshow(outputImg, dst);
 
         dst.delete();
@@ -44,24 +38,30 @@ function FilterManager() {
     },
 
     this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
-        let src = cv.imread("inputImg");
 
         cv.dilate(src, src, kernel);
+
         cv.imshow(outputImg, src);
+
         src.delete();
     },
 
     this.erode = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
-        let src = cv.imread("inputImg");
 
         cv.erode(src, src, kernel);
+
         cv.imshow(outputImg, src);
+
         src.delete();
     },
 
@@ -78,6 +78,7 @@ function FilterManager() {
         let anchor = new cv.Point(-1, -1);
         cv.filter2D(src, src, cv.CV_8UC1, kernel,
                     anchor, 0, cv.BORDER_DEFAULT);
+
         cv.imshow(outputImg, src);
 
         src.delete();
@@ -106,9 +107,22 @@ function FilterManager() {
     this.thresholding = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
+
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
-        cv.adaptiveThreshold(dst, dst, 200, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 3, 2);
+        cv.adaptiveThreshold(dst, dst, 200, cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+                             cv.THRESH_BINARY, 3, 2);
 
         cv.imshow(outputImg, dst);
+
+        src.delete();
+        dsr.delete();
+    },
+
+    this.sobel = function(inputImg, outputImg) {
+
+    },
+
+    this.laplace = function(inputImg, outputImg) {
+
     }
 };
