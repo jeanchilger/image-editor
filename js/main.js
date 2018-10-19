@@ -35,7 +35,13 @@ function App() {
 // when the opencv.js was fully loaded
 $("#opencvJSFile").ready(function () {
     var app = new App();
+    var tools = new Tools();
     var filter = new FilterManager();
+
+    //set canvas size
+    $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
+    $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
+
 
     // Load the image
     $("#fileInput").change(function(event) {
@@ -56,48 +62,12 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
-    $("#triggerPen").click(function(){
-        var pen = new Pen();
-        var rect = $("#outputImg")[0].getBoundingClientRect();
-
-        $("#outputImg").mousedown(function(event){
-            pen.paint = true;
-            pen.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
-
-
-            if(pen.prevX == null){
-                pen.prevX = event.pageX - rect.left;
-                pen.prevY = event.pageY - rect.top;
-            }
-        });
-
-        $("#outputImg").mousemove(function(event){
-            if (pen.paint){
-                if(pen.prevX == null){
-                    pen.prevX = event.pageX - rect.left;
-                    pen.prevY = event.pageY - rect.top;
-                }
-                pen.draw(event.pageX - rect.left, event.pageY - rect.top);
-                pen.prevX = event.pageX - rect.left;
-                pen.prevY = event.pageY - rect.top;
-            }
-
-        });
-
-        $("#outputImg").mouseup(function(event){
-            pen.paint = false;
-            pen.prevX = null;
-        });
-
-        $("#outputImg").mouseleave(function(event){
-            pen.paint = false;
-            pen.prevX = null;
-            pen.prevY = null;
-        });
-
+    $("#penTrigger").click(function(){
+        let pen = new tools.Pen();
+        pen.init();
     });
 });
 
 $(function() {
   $('[data-toggle="tooltip"]').tooltip()
-});
+})
