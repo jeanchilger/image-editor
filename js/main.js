@@ -66,14 +66,15 @@ $("#opencvJSFile").ready(function () {
         let pen = new tools.Pen();
         pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
+        $(".jscolor").change(function(){
+            pen.color = "#" + $(".jscolor")[0].value;
 
-        $(".jscolor").click(function(){
-            $("#palete").click(function(){
-                pen.color = "#" + $(".jscolor")[0].value;
-                console.log(pen.color);
-            });
         });
 
+    });
+
+    $("#triggerCutImg").click(function(){
+        let imgCutter = new tools.ImgCutter();
     });
 });
 

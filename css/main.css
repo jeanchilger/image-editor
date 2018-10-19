@@ -66,6 +66,12 @@ img {
     cursor: pointer;
 }
 
+.jscolor{
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 /*SOMETHING LIKE THIS*/
 /* table tr:nth-child(odd) td:nth-child(even) {
   background: #000;
