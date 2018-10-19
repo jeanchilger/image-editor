@@ -67,5 +67,9 @@ function Tools(){
             context.stroke();
         }
 
-    };
+    },
+
+    this.cutImage = function(inputImg, outputImg) {
+        
+    }
 };

@@ -62,7 +62,12 @@ $("#opencvJSFile").ready(function () {
         app.downloadImage();
     });
 
-    $("#penTrigger").click(function(){
+    $("#triggerPen").click(function(){
+        let pen = new tools.Pen();
+        pen.init();
+    });
+
+    $("#triggerCutImg").click(function(){
         let pen = new tools.Pen();
         pen.init();
     });
