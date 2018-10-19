@@ -68,8 +68,7 @@ $("#opencvJSFile").ready(function () {
     });
 
     $("#triggerCutImg").click(function(){
-        let pen = new tools.Pen();
-        pen.init();
+        let imgCutter = new tools.ImgCutter();
     });
 });
 
