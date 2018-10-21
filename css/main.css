@@ -56,7 +56,8 @@ img {
 }
 
 .tool-box a, .jscolor {
-    margin-top: .5vh;
+    margin-top: .9vh;
+    padding: 0.5vh;
 }
 
 .input-file {
@@ -71,6 +72,11 @@ img {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
+    padding: 1vh;
+}
+
+.material-icons {
+    font-size: 4.1vh;
 }
 
 /*SOMETHING LIKE THIS*/
