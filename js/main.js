@@ -100,7 +100,7 @@ $("#opencvJSFile").ready(function() {
     });
 
     $("#triggerCutImg").click(function(){
-        let imgCutter = new tools.ImgCutter();
+        let imgCutter = new tools.ImgCutter("outputImg");
     });
 });
 
