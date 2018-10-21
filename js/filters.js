@@ -85,10 +85,10 @@ function FilterManager() {
                     [-1, 9, -1],
                     [-1, -1, -1]
                 ];
-        let kernel = cv.matFromArray(3, 3, cv.CV_8UC1, array);
+        let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
 
         let anchor = new cv.Point(-1, -1);
-        cv.filter2D(src, src, cv.CV_8UC1, kernel,
+        cv.filter2D(src, src, cv.CV_8U, kernel,
                     anchor, 0, cv.BORDER_DEFAULT);
 
         cv.imshow(outputImg, src);
@@ -131,11 +131,34 @@ function FilterManager() {
     },
 
     this.sobel = function(inputImg, outputImg) {
-        this.blur(inputImg, outputImg);
-        this.grayScale(inputImg, outputImg);
-
         let src = cv.imread(inputImg);
-        //// TODO: 
+
+        let ksize = new cv.Size(3, 3);
+        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        //SOBEL
+        let gradx = new cv.Mat(), grady = new cv.Mat();
+        cv.Sobel(src, gradx, cv.CV_8U, 1, 0, 3, 1, 0, cv.BORDER_DEFAULT);
+        cv.Sobel(src, grady, cv.CV_8U, 0, 1, 3, 1, 0, cv.BORDER_DEFAULT);
+
+        let absgx = new cv.Mat(), absgy = new cv.Mat();
+        cv.convertScaleAbs(gradx, absgx);
+        cv.convertScaleAbs(grady, absgy);
+
+        let dst = new cv.Mat();
+        cv.addWeighted(absgx, 0.5, absgy, 0.5, 0, dst);
+
+        //cv.adaptiveThreshold(dst, dst, 200, cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+        //                     cv.THRESH_BINARY, 3, 2);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        gradx.delete(); grady.delete();
+        absgx.delete(); absgy.delete();
+        dst.delete();
     },
 
     this.laplace = function(inputImg, outputImg) {
