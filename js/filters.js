@@ -1,4 +1,16 @@
 function FilterManager() {
+    this.blur = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+
+        let ksize = new cv.Size(3, 3);
+
+        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.imshow(outputImg, src);
+
+        src.delete();
+    },
+
     this.grayScale = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
@@ -69,10 +81,10 @@ function FilterManager() {
         let src = cv.imread(inputImg);
 
         let array = [
-                    [0, -1, 0],
-                    [-1, 5, -1],
-                    [0, -1, 0]
-                ]; //acertar esse filtro
+                    [-1, -1, -1],
+                    [-1, 9, -1],
+                    [-1, -1, -1]
+                ];
         let kernel = cv.matFromArray(3, 3, cv.CV_8UC1, array);
 
         let anchor = new cv.Point(-1, -1);
@@ -119,7 +131,11 @@ function FilterManager() {
     },
 
     this.sobel = function(inputImg, outputImg) {
+        this.blur(inputImg, outputImg);
+        this.grayScale(inputImg, outputImg);
 
+        let src = cv.imread(inputImg);
+        //// TODO: 
     },
 
     this.laplace = function(inputImg, outputImg) {

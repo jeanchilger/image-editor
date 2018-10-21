@@ -50,6 +50,10 @@ $("#opencvJSFile").ready(function() {
         app.loadImgToCV();
     });
 
+    $("#triggerBlur").click(function() {
+        filter.blur("outputImg", "outputImg");
+    });
+
     // Filter triggers
     $("#triggerGrayScale").click(function() {
         filter.grayScale("outputImg", "outputImg");
