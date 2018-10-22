@@ -50,7 +50,8 @@ function Tools(){
             context.strokeStyle = this.color;
             context.lineJoin = "round";
             context.lineWidth = 5;
-            context.beginPath();
+            context.beginPat
+            h();
             context.moveTo(this.prevX, this.prevY);
             context.lineTo(x,y);
             context.closePath();
@@ -71,11 +72,10 @@ function Tools(){
     };
 
     this.ImgCutter = function(canvasId) {
-        // usa div e quando tira faz com rect
         this.originX = null;
         this.originY = null;
         this.canvasId = canvasId;
-        let rect = $("#"+canvasId)[0].getBoundingClientRect();
+        let rect = $("#outImgContainer")[0].getBoundingClientRect();
         this.offsetX = rect.left;
         this.offsetY = rect.top;
 
@@ -115,6 +115,7 @@ function Tools(){
             // croppedImg = src.roi(rect);
             $("#cropArea").remove();
             // cv.imshow(self.canvasId, croppedImg);
+            $("#"+self.canvasId).unbind("mousedown", "mousemove", "mouseup");
         });
     }
 };

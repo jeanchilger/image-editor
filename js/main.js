@@ -43,7 +43,6 @@ $("#opencvJSFile").ready(function() {
     $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
     $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
 
-
     // Load the image
     $("#fileInput").change(function(event) {
         app.loadImgFromFile(event);
@@ -95,11 +94,10 @@ $("#opencvJSFile").ready(function() {
             pen.color = "#" + $(".jscolor")[0].value;
 
         });
-
-
     });
 
     $("#triggerCutImg").click(function(){
+
         let imgCutter = new tools.ImgCutter("outputImg");
     });
 });
