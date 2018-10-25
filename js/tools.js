@@ -69,8 +69,9 @@ function Tools(){
             context.stroke();
         };
 
-    };
+    },
 
+    // CUT IMAGE
     this.ImgCutter = function(canvasId) {
         this.originX = null;
         this.originY = null;
@@ -106,15 +107,17 @@ function Tools(){
 
         $("#"+self.canvasId).mouseup(function(event) {
             self.active = false;
-            // let width = event.pageX - self.originX;
-            // let height = event.pageY - self.originY;
-            //
-            // let src = cv.imread(self.canvasId);
-            // let rect = new cv.Rect(self.originX - self.offsetX, self.originY - self.offsetY, width, height);
-            // let croppedImg = new cv.Mat();
-            // croppedImg = src.roi(rect);
+            let width = event.pageX - self.originX;
+            let height = event.pageY - self.originY;
+
+            let src = cv.imread(self.canvasId);
+            let rectOffset = $("#"+self.canvasId)[0].getBoundingClientRect();
+            let rect = new cv.Rect(self.originX - rectOffset.left, self.originY - rectOffset.top, width, height);
+            let croppedImg = new cv.Mat();
+            console.log(rect);
+            croppedImg = src.roi(rect);
             $("#cropArea").remove();
-            // cv.imshow(self.canvasId, croppedImg);
+            cv.imshow(self.canvasId, croppedImg);
             $("#"+self.canvasId).unbind("mousedown", "mousemove", "mouseup");
         });
     }
