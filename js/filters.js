@@ -105,6 +105,28 @@ function FilterManager() {
         kernel.delete();
     },
 
+    this.negative = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = src.clone();
+
+        let ch = src.channels();
+        for (var i = 0; i < src.size().width * src.size().height * 4; i+=ch) { // each pixel
+            let r = 255 - src.data[i];
+
+            let g = 255 - src.data[i+1];
+
+            let b = 255 - src.data[i+2];
+
+            dst.data[i] = r;
+            dst.data[i+1] = g;
+            dst.data[i+2] = b;
+        }
+
+        cv.imshow(outputImg, dst);
+        src.delete();
+        dst.delete();
+    },
+
     this.pixelize = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
 
