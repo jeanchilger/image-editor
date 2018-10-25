@@ -27,13 +27,12 @@ function App() {
 
     this.downloadImage = function() {
         let canvas = $("#outputImg")[0];
-        alert(canvas);
         let img = canvas.toDataURL("image/png");
         $("#triggerDownload").attr("href", img);
     }
 };
 
-// when the opencv.js was fully loaded
+// when the opencv.js is fully loaded
 $("#opencvJSFile").ready(function() {
     var app = new App();
     var tools = new Tools();
@@ -44,17 +43,21 @@ $("#opencvJSFile").ready(function() {
     $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
 
 
-    // Load the image
+    // Upload and download image
     $("#fileInput").change(function(event) {
         app.loadImgFromFile(event);
         app.loadImgToCV();
     });
 
+    $("#triggerDownload").click(function() {
+        app.downloadImage();
+    });
+
+    // Filters triggers
     $("#triggerBlur").click(function() {
         filter.blur("outputImg", "outputImg");
     });
 
-    // Filter triggers
     $("#triggerGrayScale").click(function() {
         filter.grayScale("outputImg", "outputImg");
     });
@@ -63,26 +66,15 @@ $("#opencvJSFile").ready(function() {
         filter.sepia("outputImg", "outputImg");
     });
 
-    $("#triggerDownload").click(function() {
-        app.downloadImage();
-    });
-
-    $("#triggerDilate").click(function() {
-        filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());
-    });
-
-    $("#triggerErode").click(function() {
-        filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
+    $("#triggerPixelize").click(function() {
+        filter.pixelize("outputImg", "outputImg");
     });
 
     $("#triggerSharpen").click(function() {
         filter.sharpen("outputImg", "outputImg");
     });
 
-    $("#triggerPixelize").click(function() {
-        filter.pixelize("outputImg", "outputImg");
-    });
-
+    // Binarization triggers
     $("#triggerTresh").click(function() {
         filter.thresholding("outputImg", "outputImg");
     });
@@ -91,8 +83,24 @@ $("#opencvJSFile").ready(function() {
         filter.sobel("outputImg", "outputImg");
     });
 
-    $("#penTrigger").click(function(){
-        //console.log('aesdef');
+    $("#triggerLaplace").click(function() {
+        filter.laplace("outputImg", "outputImg");
+    });
+
+    // Morphological operations triggers
+    $("#triggerDilate").click(function() {
+        filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());
+    });
+
+    $("#triggerErode").click(function() {
+        filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
+    });
+
+    // Color triggers
+
+
+    // Tools triggers
+    $("#triggerPen").click(function(){
         $("#penSize").css("display", "block");
         let pen = new tools.Pen();
         pen.color = "#" + $(".jscolor")[0].value;

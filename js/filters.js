@@ -1,14 +1,16 @@
 function FilterManager() {
     this.blur = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
         let ksize = new cv.Size(3, 3);
 
-        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+        cv.GaussianBlur(src, dst, ksize, 0, 0, cv.BORDER_DEFAULT);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
     },
 
     this.grayScale = function(inputImg, outputImg) {
@@ -51,34 +53,39 @@ function FilterManager() {
 
     this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
         let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
 
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
 
-        cv.dilate(src, src, kernel);
+        cv.dilate(src, dst, kernel);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
     },
 
     this.erode = function(inputImg, outputImg, kerSize, kerShape) {
         let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
 
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
 
-        cv.erode(src, src, kernel);
+        cv.erode(src, dst, kernel);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
     },
 
     this.sharpen = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
         let array = [
                     [-1, -1, -1],
@@ -88,12 +95,13 @@ function FilterManager() {
         let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
 
         let anchor = new cv.Point(-1, -1);
-        cv.filter2D(src, src, cv.CV_8U, kernel,
+        cv.filter2D(src, dst, cv.CV_8U, kernel,
                     anchor, 0, cv.BORDER_DEFAULT);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
         kernel.delete();
     },
 
@@ -132,6 +140,7 @@ function FilterManager() {
 
     this.sobel = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
         let ksize = new cv.Size(3, 3);
         cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
@@ -147,11 +156,7 @@ function FilterManager() {
         cv.convertScaleAbs(gradx, absgx);
         cv.convertScaleAbs(grady, absgy);
 
-        let dst = new cv.Mat();
         cv.addWeighted(absgx, 0.5, absgy, 0.5, 0, dst);
-
-        //cv.adaptiveThreshold(dst, dst, 200, cv.ADAPTIVE_THRESH_GAUSSIAN_C,
-        //                     cv.THRESH_BINARY, 3, 2);
 
         cv.imshow(outputImg, dst);
 
@@ -162,6 +167,20 @@ function FilterManager() {
     },
 
     this.laplace = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
+        let ksize = new cv.Size(3, 3);
+        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        //LAPLACE
+        cv.Laplacian(src, dst, cv.CV_8U, 1, 1, 0, cv.BORDER_DEFAULT);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
     }
 };
