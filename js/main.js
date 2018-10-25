@@ -101,10 +101,11 @@ $("#opencvJSFile").ready(function() {
 
     // Tools triggers
     $("#triggerPen").click(function(){
-        $("#penSize").css("display", "block");
         let pen = new tools.Pen();
+        $("#penSize").css("display", "block");
         pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
+        pen.size = parseInt($("#inputSize")[0].value);
 
         //change pen color
         $(".jscolor").change(function(){
