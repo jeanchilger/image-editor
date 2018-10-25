@@ -91,16 +91,27 @@ $("#opencvJSFile").ready(function() {
         filter.sobel("outputImg", "outputImg");
     });
 
-    $("#triggerPen").click(function(){
+    $("#penTrigger").click(function(){
+        //console.log('aesdef');
+        $("#penSize").css("display", "block");
         let pen = new tools.Pen();
         pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
+
+        //change pen color
         $(".jscolor").change(function(){
             pen.color = "#" + $(".jscolor")[0].value;
 
         });
+        //change pen size
+        $("#inputSize").change(function(){
+            $("#size").val($("#inputSize")[0].value);
+            pen.size = parseInt($("#size").val());
+        });
 
-
+        $("#size").change(function(){
+            pen.size = parseInt($(this).val());
+        });
     });
 
     $("#triggerCutImg").click(function(){

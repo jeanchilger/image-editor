@@ -73,6 +73,18 @@ img {
     overflow: hidden;
 }
 
+#penSize{
+    display: none;
+    margin-top: 2.5vh;
+    margin-left: 1vh
+}
+
+#size{
+    font-size:2.4vh;
+    width:6.5vh;
+    height:4vh;
+    margin-left:1vh;
+}
 /*SOMETHING LIKE THIS*/
 /* table tr:nth-child(odd) td:nth-child(even) {
   background: #000;

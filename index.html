@@ -182,8 +182,16 @@
                             <i class="fas fa-pen"></i>
                         </a>
 
-                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color">
+                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
 
+                        <!--<div class="swipe-path" id="swipePath">
+                            <div class="swipe-button" id="swipeButton"></div>
+                        </div>
+                        <label for="customRange1">Example range</label>-->
+                        <div class="col-md-9" id="penSize">
+                            <input type="text" class="form-control" id="size" value="5">
+                            <input type="range" min="0" max="20" step="1" value = "5" class="custom-range" id="inputSize">
+                        </div>
                     </div>
 
                 </div>
@@ -216,7 +224,7 @@
         <script src="js/jquery-3.3.1.min.js" charset="utf-8"></script>
         <script src="js/bootstrap.bundle.min.js" charset="utf-8"></script>
         <script src="js/utils.js" charset="utf-8"></script>
-        <script src="js/opencv.js" charset="utf-8" id="opencvJSFile"></script>
+        <!--<script src="js/opencv.js" charset="utf-8" id="opencvJSFile"></script>-->
         <script src="js/filters.js" charset="utf-8"></script>
         <script src="js/tools.js" charset="utf-8"></script>
         <script src="js/jscolor.js" charset="utf-8"></script>
