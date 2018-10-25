@@ -91,6 +91,10 @@ $("#opencvJSFile").ready(function() {
         filter.sobel("outputImg", "outputImg");
     });
 
+    $("#triggerLaplace").click(function() {
+        filter.laplace("outputImg", "outputImg");
+    });
+
     $("#triggerPen").click(function(){
         let pen = new tools.Pen();
         pen.color = "#" + $(".jscolor")[0].value;
