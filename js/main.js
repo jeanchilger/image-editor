@@ -91,6 +91,10 @@ $("#opencvJSFile").ready(function() {
         filter.laplace("outputImg", "outputImg");
     });
 
+    $("#triggerFaceDetect").click(function() {
+        filter.faceDetect("outputImg", "outputImg");
+    });
+
     // Morphological operations triggers
     $("#triggerDilate").click(function() {
         filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());

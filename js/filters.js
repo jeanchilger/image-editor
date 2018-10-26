@@ -204,5 +204,48 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
+    },
+
+    this.faceDetect = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let gray = new cv.Mat();
+        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+
+        alert(document.domain);
+
+        // creates the .xml file to load it
+        let utils = new Utils('errorMessage');
+        let faceCascadeFile = 'haarcascade_frontalface_default.xml';
+        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+            console.log('cascade ready to load.');
+        });
+
+        // loads the .xml haar cascade
+        let faces = new cv.RectVector();
+        let faceCascade = new cv.CascadeClassifier();
+        if (faceCascade.load('haarcascade_frontalface_default.xml')) {
+            let size = new cv.Size(0, 0);
+            // detect the faces and put it on faces;
+            faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, size, size);
+            // iterates over the found faces
+            for (let i=0; i < faces.size(); i++) {
+                //let roiGray = gray.roi(faces.get(i));
+                //let roiSrc = src.roi(faces.get(i));
+                // build the rect in red color
+                let point1 = new cv.Point(faces.get(i).x, faces.get(i).y);
+                let point2 = new cv.Point(faces.get(i).x + faces.get(i).width,
+                                          faces.get(i).y + faces.get(i).height);
+                cv.rectangle(src, point1, point2, [255, 0, 0, 255]);
+            }
+
+        } else {
+            console.log("Could not load .xml file");
+        }
+
+        cv.imshow(outputImg, src);
+        src.delete();
+        gray.delete();
+        faces.delete();
+        faceCascade.delete();
     }
 };
