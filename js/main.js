@@ -114,6 +114,7 @@ $("#opencvJSFile").ready(function() {
         //change pen color
         $(".jscolor").change(function(){
             pen.color = "#" + $(".jscolor")[0].value;
+            console.log(pen.color);
 
         });
         //change pen size

@@ -85,6 +85,13 @@ img {
     height:4vh;
     margin-left:1vh;
 }
+
+i{
+	vertical-align:middle;
+	position: relative;
+	left: -0.8vh;
+}
+
 /*SOMETHING LIKE THIS*/
 /* table tr:nth-child(odd) td:nth-child(even) {
   background: #000;
