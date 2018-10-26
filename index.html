@@ -95,7 +95,7 @@
 
                                 <input type="file" class="dropdown-item input-file" id="fileInput">
                                 <label class="dropdown-item inp-file-label" for="fileInput">Upload image</label>
-                                <a id="triggerDownload" class="dropdown-item" href="#" download>Download image</a>
+                                <a id="triggerDownload" class="dropdown-item" href="#" download>Salvar...</a>
                             </div>
                         </li>
 
@@ -106,19 +106,18 @@
                             </a>
                             <div class="dropdown-menu">
                                 <h6 class="dropdown-header">Filters</h6>
-                                <a class="dropdown-item" href="#" id="triggerBlur">Blur</a>
-                                <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
-                                <a class="dropdown-item" href="#" id="triggerSepia">Sepia</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerBlur">Blur</a>
                                 <a class="dropdown-item" href="#" id="triggerPixelize">Pixelize</a>
-                                <a class="dropdown-item" href="#" id="triggerSharpen">Sharpen</a>
-                                <a class="dropdown-item" href="#" id="triggerNegative">Negative</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerSharpen">Sharpen</a>
+                                <a class="dropdown-item" href="#" id="triggerSepia">Sépia</a>
+                                <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
 
 
                                 <hr>
                                 <h6 class="dropdown-header">Binarization</h6>
                                 <a class="dropdown-item" href="#" id="triggerTresh">Thresholding</a>
-                                <a class="dropdown-item" href="#" id="triggerSobel">Sobel</a>
-                                <a class="dropdown-item" href="#" id="triggerLaplace">Laplace</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerLaplace">Laplace</a>
+                                <a class="dropdown-item disabled" href="#" id="triggerSobel">Sobel</a>
 
                                 <hr>
                                 <h6 class="dropdown-header">Morphological Operations</h6>
@@ -181,20 +180,24 @@
                             </i>
                         </a>
 
-                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Espelhar Verticalmente">
-                            <i class="fas fa-pen"></i>
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Adicionar Texto">
+                            <i class="material-icons">
+                                format_shapes
+                            </i>
                         </a>
 
-                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Espelhar Verticalmente">
+                            <i class="material-icons">
+                                flip
+                            </i>
+                        </a>
 
-                        <!--<div class="swipe-path" id="swipePath">
-                            <div class="swipe-button" id="swipeButton"></div>
-                        </div>
-                        <label for="customRange1">Example range</label>-->
+                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" id="penColor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
+
                         <div class="col-md-9" id="penSize">
-                            <input type="text" class="form-control" id="size" value="5">
-                            <input type="range" min="1" max="20" step="1" value = "5" class="custom-range" id="inputSize">
-                        </div>
+                           <input type="text" class="form-control" id="size" value="5">
+                           <input type="range" min="1" max="20" step="1" value = "5" class="custom-range" id="inputSize">
+                       </div>
                     </div>
 
                 </div>
@@ -206,6 +209,24 @@
                         <canvas class="output-img" id="outputImg"></canvas>
 
                     <!-- </center> -->
+                </div>
+
+
+                <div class="input-group col-md-5" id="textTool">
+                    <div class="row meta-info">
+                          <div class="col-md-5">
+                              <input class="form-control form-control-sm" type="text" placeholder="Tamanho" id="textSize">
+                              <input class="col-sm-2 btn btn-outline-secondary jscolor" id="textColor" data-toggle="tooltip" data-placement="right" title="" value="fff" data-original-title="Choose color">
+                              <select class="custom-select custom-select-sm" id="fontFamily">
+                                  <option selected="">Fonte</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                              </select>
+                          </div>
+                  </div>
+                <div class="col-md-6">
+                    <textarea rows = "3" cols="8" class="form-control" aria-describedby="meta-info"> </textarea>
                 </div>
             </div>
         </main>

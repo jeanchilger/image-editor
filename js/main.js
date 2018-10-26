@@ -116,9 +116,8 @@ $("#opencvJSFile").ready(function() {
         pen.size = parseInt($("#inputSize")[0].value);
 
         //change pen color
-        $(".jscolor").change(function(){
-            pen.color = "#" + $(".jscolor")[0].value;
-
+        $("#penColor").change(function(){
+            pen.color = "#" + $("#penColor")[0].value;
         });
         //change pen size
         $("#inputSize").change(function(){
@@ -133,6 +132,14 @@ $("#opencvJSFile").ready(function() {
 
     $("#triggerCutImg").click(function(){
         let imgCutter = new tools.ImgCutter();
+    });
+
+    $("#outputImg").click(function(){
+        // let rect = $("#outputImg")[0].getBoundingClientRect();
+        // rect.offsetX
+        $("#textTool").css("left", event.pageX);
+        $("#textTool").css("top", event.pageY);
+        $("#textTool").css("display", "flex");
     });
 });
 

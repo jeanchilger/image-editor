@@ -55,7 +55,7 @@ img {
     position: static;
 }
 
-.tool-box a, .jscolor {
+.tool-box a, #penColor {
     margin-top: .5vh;
 }
 
@@ -85,6 +85,35 @@ img {
     height:4vh;
     margin-left:1vh;
 }
+
+i{
+	vertical-align:middle;
+	position: relative;
+	left: -0.8vh;
+}
+
+#textTool{
+    position:absolute;
+    display: none;
+}
+
+#fontFamily{
+	margin-left:2vh;
+	margin-top:.2vh;
+	margin-bottom:.2vh;
+	width:-webkit-fill-available;
+}
+
+#textSize{
+	margin-left: 2vh;
+	width:50%;
+	display:inline-block;
+}
+
+#textColor{
+	height:4.5vh;
+}
+
 /*SOMETHING LIKE THIS*/
 /* table tr:nth-child(odd) td:nth-child(even) {
   background: #000;

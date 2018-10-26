@@ -105,5 +105,9 @@ function Tools(){
         $("#outputImg").mouseup(function(event) {
             self.active = false;
         });
+    };
+
+    this.Text = function(){
+        
     }
 };
