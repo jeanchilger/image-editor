@@ -37,6 +37,8 @@ $("#opencvJSFile").ready(function() {
     var app = new App();
     var tools = new Tools();
     var filter = new FilterManager();
+    let text = new tools.Text();
+    let pen = new tools.Pen();
 
     //set canvas size
     $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
@@ -109,7 +111,6 @@ $("#opencvJSFile").ready(function() {
 
     // Tools triggers
     $("#triggerPen").click(function(){
-        let pen = new tools.Pen();
         $("#penSize").css("display", "block");
         pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
@@ -134,12 +135,32 @@ $("#opencvJSFile").ready(function() {
         let imgCutter = new tools.ImgCutter();
     });
 
-    $("#outputImg").click(function(){
-        // let rect = $("#outputImg")[0].getBoundingClientRect();
-        // rect.offsetX
-        $("#textTool").css("left", event.pageX);
-        $("#textTool").css("top", event.pageY);
-        $("#textTool").css("display", "flex");
+    $("#triggerText").click(function(){
+        let rect = $("#outputImg")[0].getBoundingClientRect();
+        text.type = true;
+
+        $("#outputImg").click(function(){
+            if (text.type){
+                text.x = event.pageX;
+                text.y = event.pageY;
+                $("#textTool").css("left", event.pageX+1);
+                $("#textTool").css("top", event.pageY+1);
+                $("#textTool").css("display", "flex");
+            }
+        });
+
+        $(document).on("keypress", function(e){
+            if (text.type & event.key === "Enter"){
+                text.x -= rect.left;
+                text.y -= rect.top;
+                text.font = $("#fontFamily").val();
+                text.size = $("#textSize").val()+"px ";
+                text.color = "#"+$("#textColor").val();
+                text.write();
+                text.type = false;
+                $("#textTool").css("display", "none");
+            }
+        });
     });
 });
 

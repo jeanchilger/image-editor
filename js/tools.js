@@ -1,6 +1,6 @@
 function Tools(){
+    let canvas = $("#outputImg")[0];
     this.Pen = function(){
-        let canvas = $("#outputImg")[0];
         let context = canvas.getContext('2d');
         let paint = false;
         let prevX = null;
@@ -108,6 +108,21 @@ function Tools(){
     };
 
     this.Text = function(){
-        
+        let type = false;
+        let x = null;
+        let y = null;
+        let font;
+        let size;
+        let color;
+
+        this.write = function(){
+            var context = canvas.getContext("2d");
+            context.font = this.size+this.font;
+            //context.font = "30px Comic Sans MS";
+            console.log(this.size+this.font);
+            console.log(this.color);
+            context.fillStyle = this.color;
+            context.fillText($("#textContent").val(), this.x, this.y);
+        };
     }
 };
