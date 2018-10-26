@@ -190,8 +190,12 @@
                             </i>
                         </a>
 
-                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
+                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" id="penColor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
 
+                        <div class="col-md-9" id="penSize">
+                           <input type="text" class="form-control" id="size" value="5">
+                           <input type="range" min="1" max="20" step="1" value = "5" class="custom-range" id="inputSize">
+                       </div>
                     </div>
 
                 </div>
@@ -203,6 +207,24 @@
                         <canvas class="output-img" id="outputImg"></canvas>
 
                     <!-- </center> -->
+                </div>
+
+
+                <div class="input-group col-md-5" id="textTool">
+                    <div class="row meta-info">
+                          <div class="col-md-5">
+                              <input class="form-control form-control-sm" type="text" placeholder="Tamanho" id="textSize">
+                              <input class="col-sm-2 btn btn-outline-secondary jscolor" id="textColor" data-toggle="tooltip" data-placement="right" title="" value="fff" data-original-title="Choose color">
+                              <select class="custom-select custom-select-sm" id="fontFamily">
+                                  <option selected="">Fonte</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                              </select>
+                          </div>
+                  </div>
+                <div class="col-md-6">
+                    <textarea rows = "3" cols="8" class="form-control" aria-describedby="meta-info"> </textarea>
                 </div>
             </div>
         </main>
@@ -224,7 +246,7 @@
         <script src="js/jquery-3.3.1.min.js" charset="utf-8"></script>
         <script src="js/bootstrap.bundle.min.js" charset="utf-8"></script>
         <script src="js/utils.js" charset="utf-8"></script>
-        <!-- <script src="js/opencv.js" charset="utf-8" id="opencvJSFile"></script> -->
+        <script src="js/opencv.js" charset="utf-8" id="opencvJSFile"></script>
         <script src="js/filters.js" charset="utf-8"></script>
         <script src="js/tools.js" charset="utf-8"></script>
         <script src="js/jscolor.js" charset="utf-8"></script>
