@@ -38,3 +38,7 @@ Or simply [download](https://github.com/JeanCHilger/image-editor/archive/master.
 ```
 https://github.com/PauloGSC/free-images
 ```
+
+#Install opencv in Node
+- npm install --save opencv4nodejs
+- require("opencv4nodejs");
