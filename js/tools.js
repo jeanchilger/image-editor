@@ -1,11 +1,12 @@
 function Tools(){
+    let canvas = $("#outputImg")[0];
     this.Pen = function(){
-        let canvas = $("#outputImg")[0];
         let context = canvas.getContext('2d');
         let paint = false;
         let prevX = null;
         let prevY = null;
-        let color = "#000";
+        let color = "fff";
+        let size = 5;
         let self = this;
 
         this.init = function(){
@@ -49,7 +50,7 @@ function Tools(){
         this.draw = function(x, y){
             context.strokeStyle = this.color;
             context.lineJoin = "round";
-            context.lineWidth = 5;
+            context.lineWidth = this.size;
             context.beginPath();
             context.moveTo(this.prevX, this.prevY);
             context.lineTo(x,y);
@@ -59,11 +60,12 @@ function Tools(){
 
         this.drawPoint = function(x, y){
             context.beginPath();
-            context.arc(x, y, 2, 0,2*Math.PI);
+            context.arc(x, y, this.size / 2, 0,2*Math.PI);
             context.strokeStyle = this.color;
             context.fillStyle = this.color;
-            context.lineWidth = 2;
             context.fill();
+            context.lineWidth = 2;
+            context.strokeStyle = this.color;
             //context.closePath();
             context.stroke();
         };
@@ -103,5 +105,24 @@ function Tools(){
         $("#outputImg").mouseup(function(event) {
             self.active = false;
         });
+    };
+
+    this.Text = function(){
+        let type = false;
+        let x = null;
+        let y = null;
+        let font;
+        let size;
+        let color;
+
+        this.write = function(){
+            var context = canvas.getContext("2d");
+            context.font = this.size+this.font;
+            //context.font = "30px Comic Sans MS";
+            console.log(this.size+this.font);
+            console.log(this.color);
+            context.fillStyle = this.color;
+            context.fillText($("#textContent").val(), this.x, this.y);
+        };
     }
 };

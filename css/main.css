@@ -55,7 +55,7 @@ img {
     position: static;
 }
 
-.tool-box a, .jscolor {
+.tool-box a, #penColor {
     margin-top: .5vh;
 }
 
@@ -71,6 +71,47 @@ img {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
+}
+
+#penSize{
+    display: none;
+    margin-top: 2.5vh;
+    margin-left: 1vh
+}
+
+#size{
+    font-size:2.4vh;
+    width:6.5vh;
+    height:4vh;
+    margin-left:1vh;
+}
+
+i{
+	vertical-align:middle;
+	position: relative;
+	left: -0.3vh;
+}
+
+#textTool{
+    position:absolute;
+    display: none;
+}
+
+#fontFamily{
+	margin-left:2vh;
+	margin-top:.2vh;
+	margin-bottom:.2vh;
+	width:-webkit-fill-available;
+}
+
+#textSize{
+	margin-left: 2vh;
+	width:50%;
+	display:inline-block;
+}
+
+#textColor{
+	height:4.5vh;
 }
 
 /*SOMETHING LIKE THIS*/
