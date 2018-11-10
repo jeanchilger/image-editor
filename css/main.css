@@ -47,16 +47,24 @@ img {
     margin-top: 10vh;
     justify-content: center;
     align-items: center;
+    /* position: relative; */
+}
+
+.output-img {
+    position: relative;
+    border: 2px solid red;
 }
 
 .tool-box {
     background-color: #eeeeee;
     margin-top: 10vh;
-    position: static;
+    position: relative;
 }
 
-.tool-box a, #penColor {
-    margin-top: .5vh;
+.tool-box a, .jscolor {
+    margin-top: .9vh;
+    padding: 0.6vh;
+
 }
 
 .input-file {
@@ -67,10 +75,22 @@ img {
     cursor: pointer;
 }
 
-.jscolor{
+.jscolor {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
+    padding: 1vh;
+}
+
+.material-icons {
+    font-size: 4vh;
+}
+
+.crop-area {
+    border: 2px solid black;
+    position: absolute;
+    z-index: 999;
+    
 }
 
 #penSize{
