@@ -14,6 +14,7 @@ function FilterManager() {
     },
 
     this.grayScale = function(inputImg, outputImg) {
+        console.log("DOMAIN: ", document.domain);
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
