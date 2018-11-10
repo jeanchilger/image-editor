@@ -1,4 +1,5 @@
 function Tools(){
+    // Tirar essa variável global!!;
     let canvas = $("#outputImg")[0];
     this.Pen = function(){
         let context = canvas.getContext('2d');
@@ -53,7 +54,7 @@ function Tools(){
 
             context.lineWidth = this.size;
             context.beginPath();
-          
+
             context.moveTo(this.prevX, this.prevY);
             context.lineTo(x,y);
             context.closePath();
@@ -73,6 +74,75 @@ function Tools(){
         };
 
     },
+
+    // RESIZE IMAGE
+    this.ResizeImg = function(canvasId) {
+        /*
+         * Object responsable for resize a image.
+         * The id of the canvas is passed for allow get it.
+         * */
+
+        this.canvasId = canvasId;
+        this.modalSRC = `
+        <div class="modal fade" id="resizeModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Resize Imgae</h5>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="heightSize">Height</label>
+                            <input type="number" class="form-control" id="heightSize" min="1">
+                            <label for="widthSize">Width</label>
+                            <input type="number" class="form-control" id="widthSize" min="1">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="triggerResizeImg">Resize</button>
+                    </div>
+                </div>
+             </div>
+        </div>`;
+        let self = this;
+
+        this.initModal = function() {
+            /*
+             * Displays the modal with the options to resize the image.
+             * */
+
+            $("html").append(self.modalSRC);
+            let width = $("#"+self.canvasId).width();
+            let height = $("#"+self.canvasId).height();
+            $("#widthSize").val(width);
+            $("#heightSize").val(height);
+            $("#resizeModal").modal();
+        },
+
+        this.doResize = function() {
+            /*
+             * Adds the event listeners to the ALREADY CREATED modal.
+             * */
+
+            $("#triggerResizeImg").click(function() {
+                let src = cv.imread(self.canvasId);
+                let dst = new cv.Mat();
+                let size = new cv.Size(parseInt($("#widthSize").val()),
+                                       parseInt($("#heightSize").val()));
+                cv.resize(src, dst, size, 0, 0, cv.INTER_AREA);
+                cv.imshow(self.canvasId, dst);
+
+                src.delete();
+                dst.delete();
+            });
+        }
+    }
 
     // CUT IMAGE
     this.ImgCutter = function(canvasId) {

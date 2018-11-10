@@ -130,8 +130,13 @@ $("#opencvJSFile").ready(function() {
         });
     });
 
-    $("#triggerCutImg").click(function(){
+    $("#btnResizeImg").click(function() {
+        let resImg = new tools.ResizeImg("outputImg");
+        resImg.initModal();
+        resImg.doResize();
+    });
 
+    $("#triggerCutImg").click(function() {
         let imgCutter = new tools.ImgCutter("outputImg");
     });
 
