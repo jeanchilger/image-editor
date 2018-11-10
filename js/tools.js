@@ -50,8 +50,10 @@ function Tools(){
         this.draw = function(x, y){
             context.strokeStyle = this.color;
             context.lineJoin = "round";
+
             context.lineWidth = this.size;
             context.beginPath();
+          
             context.moveTo(this.prevX, this.prevY);
             context.lineTo(x,y);
             context.closePath();
@@ -70,40 +72,56 @@ function Tools(){
             context.stroke();
         };
 
-    };
+    },
 
-    this.ImgCutter = function() {
-        // usa div e quando tira faz com rect
+    // CUT IMAGE
+    this.ImgCutter = function(canvasId) {
         this.originX = null;
         this.originY = null;
-        let rect = $("#outputImg")[0].getBoundingClientRect();
+        this.canvasId = canvasId;
+        let rect = $("#outImgContainer")[0].getBoundingClientRect();
         this.offsetX = rect.left;
         this.offsetY = rect.top;
 
-        this.ctx = $("#outputImg")[0].getContext("2d");
+        this.ctx = $("#"+canvasId)[0].getContext("2d");
         this.active = false;
 
         let self = this;
 
-        $("#outputImg").mousedown(function(event) {
+        $("#"+self.canvasId).mousedown(function(event) {
             self.originX = event.pageX;
             self.originY = event.pageY;
-
-            self.ctx.rect(self.originX - self.offsetX, self.originY - self.offsetY, 1, 1);
-            self.ctx.stroke();
+            self.$cropArea = $("<div>", {id:"cropArea", "class":"crop-area"}, "</div>");
+            $("#"+self.canvasId).before(self.$cropArea);
             self.active = true;
         });
 
-        $("#outputImg").mousemove(function(event) {
+        $("#"+self.canvasId).mousemove(function(event) {
             if (self.active) {
                 let width = event.pageX - self.originX;
                 let height = event.pageY - self.originY;
+                self.$cropArea.css({"width":Math.abs(width), "height":Math.abs(height)});
+                let top = (height < 0) ? (event.pageY - self.offsetY) : (self.originY - self.offsetY);
+                let left = (width < 0) ? (event.pageX - self.offsetX) : (self.originX - self.offsetX);
 
+                self.$cropArea.css({"top":top, "left":left});
             }
         });
 
-        $("#outputImg").mouseup(function(event) {
+        $("#"+self.canvasId).mouseup(function(event) {
             self.active = false;
+            let width = event.pageX - self.originX;
+            let height = event.pageY - self.originY;
+
+            let src = cv.imread(self.canvasId);
+            let rectOffset = $("#"+self.canvasId)[0].getBoundingClientRect();
+            let rect = new cv.Rect(self.originX - rectOffset.left, self.originY - rectOffset.top, width, height);
+            let croppedImg = new cv.Mat();
+            console.log(rect);
+            croppedImg = src.roi(rect);
+            $("#cropArea").remove();
+            cv.imshow(self.canvasId, croppedImg);
+            $("#"+self.canvasId).unbind("mousedown", "mousemove", "mouseup");
         });
     };
 

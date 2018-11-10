@@ -44,8 +44,7 @@ $("#opencvJSFile").ready(function() {
     $("#outputImg").attr("width", $("#outImgContainer")[0].clientWidth);
     $("#outputImg").attr("height", $("#outImgContainer")[0].clientHeight);
 
-
-    // Upload and download image
+    // Load the image
     $("#fileInput").change(function(event) {
         app.loadImgFromFile(event);
         app.loadImgToCV();
@@ -132,7 +131,8 @@ $("#opencvJSFile").ready(function() {
     });
 
     $("#triggerCutImg").click(function(){
-        let imgCutter = new tools.ImgCutter();
+
+        let imgCutter = new tools.ImgCutter("outputImg");
     });
 
     $("#triggerText").click(function(){
