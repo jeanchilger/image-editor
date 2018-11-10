@@ -51,8 +51,8 @@ img {
 }
 
 .output-img {
+
     position: relative;
-    border: 2px solid red;
 }
 
 .tool-box {
@@ -90,7 +90,8 @@ img {
     border: 2px solid black;
     position: absolute;
     z-index: 999;
-    
+    pointer-events: none;
+
 }
 
 #penSize{

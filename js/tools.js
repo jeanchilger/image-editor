@@ -53,7 +53,7 @@ function Tools(){
 
             context.lineWidth = this.size;
             context.beginPath();
-          
+
             context.moveTo(this.prevX, this.prevY);
             context.lineTo(x,y);
             context.closePath();
@@ -113,11 +113,13 @@ function Tools(){
             let width = event.pageX - self.originX;
             let height = event.pageY - self.originY;
 
-            let src = cv.imread(self.canvasId);
             let rectOffset = $("#"+self.canvasId)[0].getBoundingClientRect();
-            let rect = new cv.Rect(self.originX - rectOffset.left, self.originY - rectOffset.top, width, height);
+            let top = (height < 0) ? (event.pageY - rectOffset.top) : (self.originY - rectOffset.top);
+            let left = (width < 0) ? (event.pageX - rectOffset.left) : (self.originX - rectOffset.left);
+
+            let src = cv.imread(self.canvasId);
+            let rect = new cv.Rect(left, top, Math.abs(width), Math.abs(height));
             let croppedImg = new cv.Mat();
-            console.log(rect);
             croppedImg = src.roi(rect);
             $("#cropArea").remove();
             cv.imshow(self.canvasId, croppedImg);
