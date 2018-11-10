@@ -1,5 +1,20 @@
 function FilterManager() {
+    this.blur = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
+
+        let ksize = new cv.Size(3, 3);
+
+        cv.GaussianBlur(src, dst, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    },
+
     this.grayScale = function(inputImg, outputImg) {
+        console.log("DOMAIN: ", document.domain);
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
@@ -39,50 +54,78 @@ function FilterManager() {
 
     this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
         let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
 
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
 
-        cv.dilate(src, src, kernel);
+        cv.dilate(src, dst, kernel);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
     },
 
     this.erode = function(inputImg, outputImg, kerSize, kerShape) {
         let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
 
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
 
-        cv.erode(src, src, kernel);
+        cv.erode(src, dst, kernel);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
     },
 
     this.sharpen = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
         let array = [
-                    [0, -1, 0],
-                    [-1, 5, -1],
-                    [0, -1, 0]
-                ]; //acertar esse filtro
-        let kernel = cv.matFromArray(3, 3, cv.CV_8UC1, array);
+                    [-1, -1, -1],
+                    [-1, 9, -1],
+                    [-1, -1, -1]
+                ];
+        let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
 
         let anchor = new cv.Point(-1, -1);
-        cv.filter2D(src, src, cv.CV_8UC1, kernel,
+        cv.filter2D(src, dst, cv.CV_8U, kernel,
                     anchor, 0, cv.BORDER_DEFAULT);
 
-        cv.imshow(outputImg, src);
+        cv.imshow(outputImg, dst);
 
         src.delete();
+        dst.delete();
         kernel.delete();
+    },
+
+    this.negative = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = src.clone();
+
+        let ch = src.channels();
+        for (var i = 0; i < src.size().width * src.size().height * 4; i+=ch) { // each pixel
+            let r = 255 - src.data[i];
+
+            let g = 255 - src.data[i+1];
+
+            let b = 255 - src.data[i+2];
+
+            dst.data[i] = r;
+            dst.data[i+1] = g;
+            dst.data[i+2] = b;
+        }
+
+        cv.imshow(outputImg, dst);
+        src.delete();
+        dst.delete();
     },
 
     this.pixelize = function(inputImg, outputImg) {
@@ -119,10 +162,86 @@ function FilterManager() {
     },
 
     this.sobel = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
+        let ksize = new cv.Size(3, 3);
+        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        //SOBEL
+        let gradx = new cv.Mat(), grady = new cv.Mat();
+        cv.Sobel(src, gradx, cv.CV_8U, 1, 0, 3, 1, 0, cv.BORDER_DEFAULT);
+        cv.Sobel(src, grady, cv.CV_8U, 0, 1, 3, 1, 0, cv.BORDER_DEFAULT);
+
+        let absgx = new cv.Mat(), absgy = new cv.Mat();
+        cv.convertScaleAbs(gradx, absgx);
+        cv.convertScaleAbs(grady, absgy);
+
+        cv.addWeighted(absgx, 0.5, absgy, 0.5, 0, dst);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        gradx.delete(); grady.delete();
+        absgx.delete(); absgy.delete();
+        dst.delete();
     },
 
     this.laplace = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
 
+        let ksize = new cv.Size(3, 3);
+        cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        //LAPLACE
+        cv.Laplacian(src, dst, cv.CV_8U, 1, 1, 0, cv.BORDER_DEFAULT);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    },
+
+    this.faceDetect = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let gray = new cv.Mat();
+        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+
+        // creates the .xml file to load it
+        let utils = new Utils();
+        let faceCascade = new cv.CascadeClassifier();
+
+        let faceCascadeFile = "js/haarcascade_frontalface_default.xml";
+        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+            faceCascade.load(faceCascadeFile);
+        });
+
+        // loads the .xml haar cascade
+        let faces = new cv.RectVector();
+        // console.log(faceCascade);
+
+        let size = new cv.Size(0, 0);
+        // detect the faces and put it on faces;
+        faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, size, size);
+        // iterates over the found faces
+        for (let i=0; i < faces.size(); i++) {
+
+            // build the rect in red color
+            let point1 = new cv.Point(faces.get(i).x, faces.get(i).y);
+            let point2 = new cv.Point(faces.get(i).x + faces.get(i).width,
+                                      faces.get(i).y + faces.get(i).height);
+            cv.rectangle(src, point1, point2, [255, 0, 0, 255]);
+        }
+
+        cv.imshow(outputImg, src);
+        src.delete();
+        gray.delete();
+        faces.delete();
+        faceCascade.delete();
     }
 };

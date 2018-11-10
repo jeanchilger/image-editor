@@ -64,6 +64,7 @@ img {
 .tool-box a, .jscolor {
     margin-top: .9vh;
     padding: 0.6vh;
+
 }
 
 .input-file {
@@ -90,6 +91,47 @@ img {
     position: absolute;
     z-index: 999;
     
+}
+
+#penSize{
+    display: none;
+    margin-top: 2.5vh;
+    margin-left: 1vh
+}
+
+#size{
+    font-size:2.4vh;
+    width:6.5vh;
+    height:4vh;
+    margin-left:1vh;
+}
+
+i{
+	vertical-align:middle;
+	position: relative;
+	left: -0.3vh;
+}
+
+#textTool{
+    position:absolute;
+    display: none;
+}
+
+#fontFamily{
+	margin-left:2vh;
+	margin-top:.2vh;
+	margin-bottom:.2vh;
+	width:-webkit-fill-available;
+}
+
+#textSize{
+	margin-left: 2vh;
+	width:50%;
+	display:inline-block;
+}
+
+#textColor{
+	height:4.5vh;
 }
 
 /*SOMETHING LIKE THIS*/

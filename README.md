@@ -19,7 +19,7 @@ To use this web based image-editor you can access this [link](https://jeanchilge
 git clone https://github.com/JeanCHilger/image-editor.git
 cd image-editor
 ```
-- Liunx
+- Linux
 ```
 xdg-open index.html
 ```
@@ -33,3 +33,12 @@ open index.html
 ```
 
 Or simply [download](https://github.com/JeanCHilger/image-editor/archive/master.zip) and decompress the zip file and open the `index.html` file with any browser.
+
+## Free images repository
+```
+https://github.com/PauloGSC/free-images
+```
+
+#Install opencv in Node
+- npm install --save opencv4nodejs
+- require("opencv4nodejs");

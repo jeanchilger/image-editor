@@ -115,16 +115,18 @@
 
                                 <hr>
                                 <h6 class="dropdown-header">Binarization</h6>
-
                                 <a class="dropdown-item" href="#" id="triggerTresh">Thresholding</a>
                                 <a class="dropdown-item disabled" href="#" id="triggerLaplace">Laplace</a>
                                 <a class="dropdown-item disabled" href="#" id="triggerSobel">Sobel</a>
 
                                 <hr>
                                 <h6 class="dropdown-header">Morphological Operations</h6>
-
                                 <a class="dropdown-item" href="#" id="btnDilate" data-toggle="modal" data-target="#dilateModal">Dilate</a>
                                 <a class="dropdown-item" href="#" id="btnErode" data-toggle="modal" data-target="#erodeModal">Erode</a>
+
+                                <hr>
+                                <h6 class="dropdown-header">Other</h6>
+                                <a class="dropdown-item" href="#" id="triggerFaceDetect">Detect Faces</a>
                             </div>
                         </li>
 
@@ -178,14 +180,24 @@
                             </i>
                         </a>
 
-                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary icon" id="triggerFlip" data-toggle="tooltip" data-placement="right" title="Espelhar Verticalmente">
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" id="triggerText" data-toggle="tooltip" data-placement="right" title="Adicionar Texto">
                             <i class="material-icons">
-                                vertical_align_center
+                                format_shapes
                             </i>
                         </a>
 
-                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" data-toggle="tooltip" data-placement="left" title="Choose color">
+                        <a href="#" class="col-md-4 offset-md-3 btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Espelhar Verticalmente">
+                            <i class="material-icons">
+                                flip
+                            </i>
+                        </a>
 
+                        <input class="icon col-md-4 offset-md-3 btn btn-outline-secondary jscolor" id="penColor" data-toggle="tooltip" data-placement="left" title="Choose color" value="fff">
+
+                        <div class="col-md-9" id="penSize">
+                           <input type="text" class="form-control" id="size" value="5">
+                           <input type="range" min="1" max="20" step="1" value = "5" class="custom-range" id="inputSize">
+                       </div>
                     </div>
 
                 </div>
@@ -197,6 +209,25 @@
                         <canvas class="output-img" id="outputImg"></canvas>
 
                     <!-- </center> -->
+                </div>
+
+
+                <div class="input-group col-md-5" id="textTool">
+                    <div class="row meta-info">
+                          <div class="col-md-5">
+                              <input class="form-control form-control-sm" type="text" placeholder="Tamanho" id="textSize">
+                              <input class="col-sm-2 btn btn-outline-secondary jscolor" id="textColor" data-toggle="tooltip" data-placement="right" title="" value="fff" data-original-title="Choose color">
+                              <select class="custom-select custom-select-sm" id="fontFamily">
+                                  <option selected="">Fonte</option>
+                                  <option value="Comic Sans MS">Comic Sans MS</option>
+                                  <option value="Georgia">Georgia</option>
+                                  <option value="Book Antiqua">Book Antiqua</option>
+                                  <option value"Arial">Arial</option>
+                              </select>
+                          </div>
+                  </div>
+                <div class="col-md-6">
+                    <textarea rows = "3" cols="8" class="form-control" id="textContent" aria-describedby="meta-info"> </textarea>
                 </div>
             </div>
         </main>
