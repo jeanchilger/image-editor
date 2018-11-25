@@ -92,8 +92,8 @@ $("#opencvJSFile").ready(function() {
         filter.laplace("outputImg", "outputImg");
     });
 
-    $("#triggerFaceDetect").click(function() {
-        filter.faceDetect("outputImg", "outputImg");
+    $("#triggerCanny").click(function() {
+        filter.canny("outputImg", "outputImg");
     });
 
     // Morphological operations triggers

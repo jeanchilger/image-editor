@@ -105,28 +105,41 @@
                                 Filters
                             </a>
                             <div class="dropdown-menu">
-                                <h6 class="dropdown-header">Filters</h6>
-                                <a class="dropdown-item disabled" href="#" id="triggerBlur">Blur</a>
+                                <a class="dropdown-item" href="#" id="triggerBlur">Blur</a>
                                 <a class="dropdown-item" href="#" id="triggerPixelize">Pixelize</a>
-                                <a class="dropdown-item disabled" href="#" id="triggerSharpen">Sharpen</a>
                                 <a class="dropdown-item" href="#" id="triggerSepia">Sépia</a>
                                 <a class="dropdown-item" href="#" id="triggerGrayScale">Gray Scale</a>
+                            </div>
+                        </li>
 
+                    <!-- BINARIZATION SUBMENU -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
+                                Binarization
+                            </a>
 
-                                <hr>
-                                <h6 class="dropdown-header">Binarization</h6>
+                            <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#" id="triggerTresh">Thresholding</a>
-                                <a class="dropdown-item disabled" href="#" id="triggerLaplace">Laplace</a>
-                                <a class="dropdown-item disabled" href="#" id="triggerSobel">Sobel</a>
+                                <a class="dropdown-item" href="#" id="triggerLaplace">Laplace</a>
+                                <a class="dropdown-item" href="#" id="triggerSobel">Sobel</a>
+                                <a class="dropdown-item" href="#" id="triggerCanny">Canny Edge Detection</a>
 
-                                <hr>
-                                <h6 class="dropdown-header">Morphological Operations</h6>
+                            </div>
+                        </li>
+
+                    <!-- MORPHOLOGICAL OPERATIONS SUBMENU -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
+                                Morphological Operations
+                            </a>
+                            <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#" id="btnDilate" data-toggle="modal" data-target="#dilateModal">Dilate</a>
                                 <a class="dropdown-item" href="#" id="btnErode" data-toggle="modal" data-target="#erodeModal">Erode</a>
+                                <a class="dropdown-item disabled" href="#" id="btnOpening" data-toggle="modal" data-target="#openingModal">Opening</a>
+                                <a class="dropdown-item disabled" href="#" id="btnClosing" data-toggle="modal" data-target="#closingModal">Closing</a>
+                                <a class="dropdown-item disabled" href="#" id="btnMorphGrad" data-toggle="modal" data-target="#morphGradModal">Morphological Gradient</a>
+                                <a class="dropdown-item disabled" href="#" id="btnTopHat" data-toggle="modal" data-target="#topHatModal">Top Hat</a>
 
-                                <hr>
-                                <h6 class="dropdown-header">Other</h6>
-                                <a class="dropdown-item" href="#" id="triggerFaceDetect">Detect Faces</a>
                             </div>
                         </li>
 
@@ -136,6 +149,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
                                 Color
                             </a>
+
                             <div class="dropdown-menu">
                                 <a class="dropdown-item disabled" href="#" id="triggerColorHist">Color Histogram</a>
                                 <a class="dropdown-item disabled" href="#" id="triggerColorSet">Brightness, Contrast, Saturation</a>

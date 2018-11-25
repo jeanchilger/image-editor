@@ -243,5 +243,21 @@ function FilterManager() {
         gray.delete();
         faces.delete();
         faceCascade.delete();
+    };
+
+    this.canny = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
+
+        let ksize = new cv.Size(5, 5);
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        cv.Canny(src, dst, 50, 100, 3, true);
+
+        cv.imshow(outputImg, dst);
+        src.delete();
+        dst.delete();
+
     }
 };
