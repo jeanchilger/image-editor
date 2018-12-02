@@ -131,7 +131,7 @@ function FilterManager() {
         cv.imshow(outputImg, dst);
 
         src.delete();
-        dsr.delete();
+        dst.delete();
     };
 
     this.sobel = function(inputImg, outputImg) {
