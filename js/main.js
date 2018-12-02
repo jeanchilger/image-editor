@@ -79,6 +79,10 @@ $("#opencvJSFile").ready(function() {
         filter.negative("outputImg", "outputImg");
     });
 
+    $("#triggerCartoon").click(function() {
+        filter.cartoon("outputImg", "outputImg");
+    });
+
     // Binarization triggers
     $("#triggerTresh").click(function() {
         filter.thresholding("outputImg", "outputImg");

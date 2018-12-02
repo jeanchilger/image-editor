@@ -115,6 +115,32 @@ function FilterManager() {
         normal.delete();
     },
 
+    this.cartoon = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
+        let gray = new cv.Mat();
+        let edges = new cv.Mat();
+        let color = new cv.Mat();
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0);
+        cv.cvtColor(src, gray, cv.COLOR_RGB2GRAY, 0);
+        cv.medianBlur(gray, gray, 5);
+        cv.adaptiveThreshold(gray, edges, 255, cv.ADAPTIVE_THRESH_MEAN_C,
+                             cv.THRESH_BINARY, 9, 9);
+
+        cv.bilateralFilter(src, color, 9, 300, 300, cv.BORDER_DEFAULT);
+
+        cv.bitwise_and(color, color, dst, edges);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+        gray.delete();
+        edges.delete();
+        color.delete();
+    };
+
 // BINARIZATION
     this.thresholding = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -211,5 +237,5 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    };
+    }
 };
