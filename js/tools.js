@@ -9,10 +9,10 @@ function Tools(){
         let self = this;
 
         this.init = function(){
-            self.alive = true;
+            // self.alive = true;
             self.context = canvas.getContext('2d');
-            $("#outputImg").mousedown(function(event){
-                if (self.alive) {
+            $("#outputImg").on("mousedown", function(event) {
+                // if (self.alive) {
                     let rect = $("#outputImg")[0].getBoundingClientRect();
                     self.paint = true;
                     self.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
@@ -20,10 +20,10 @@ function Tools(){
                         self.prevX = event.pageX - rect.left;
                         self.prevY = event.pageY - rect.top;
                     }
-                }
+                // }
             });
 
-             $("#outputImg").mousemove(function(event){
+             $("#outputImg").on("mousemove", function(event) {
                  rect = $("#outputImg")[0].getBoundingClientRect();
                  if (self.paint){
                     if(self.prevX == null){
@@ -36,12 +36,12 @@ function Tools(){
                 }
              });
 
-             $("#outputImg").mouseup(function(event){
+             $("#outputImg").on("mouseup", function(event) {
                 self.paint = false;
                 self.prevX = null;
              });
 
-            $("#outputImg").mouseleave(function(event){
+            $("#outputImg").on("mouseleave", function(event) {
                 self.paint = false;
                 self.prevX = null;
                 self.prevY = null;
@@ -75,9 +75,13 @@ function Tools(){
         };
 
         this.destroy = function() {
-            $("#outputImg").unbind("mousedown", "mousemove", "mouseup", "mouseleave");
+            $("#outputImg").off("mousedown");
+            $("#outputImg").off("mousemove");
+            $("#outputImg").off("mouseup");
+            $("#outputImg").off("mouseleave");
+
             self.paint = false;
-            self.alive = false;
+            // self.alive = false;
             self.prevX = null;
             self.prevY = null;
             $("#penSize").css("display", "none");
@@ -98,7 +102,7 @@ function Tools(){
 
         let self = this;
 
-        $("#"+self.canvasId).mousedown(function(event) {
+        $("#"+self.canvasId).on("mousedown", function(event) {
             self.originX = event.pageX;
             self.originY = event.pageY;
             self.$cropArea = $("<div>", {id:"cropArea", "class":"crop-area"}, "</div>");
@@ -106,7 +110,7 @@ function Tools(){
             self.active = true;
         });
 
-        $("#"+self.canvasId).mousemove(function(event) {
+        $("#"+self.canvasId).on("mousemove", function(event) {
             if (self.active) {
                 let width = event.pageX - self.originX;
                 let height = event.pageY - self.originY;
@@ -118,7 +122,7 @@ function Tools(){
             }
         });
 
-        $("#"+self.canvasId).mouseup(function(event) {
+        $("#"+self.canvasId).on("mouseup", function(event) {
             self.active = false;
             let width = event.pageX - self.originX;
             let height = event.pageY - self.originY;
@@ -133,7 +137,10 @@ function Tools(){
             croppedImg = src.roi(rect);
             $("#cropArea").remove();
             cv.imshow(self.canvasId, croppedImg);
-            $("#"+self.canvasId).unbind("mousedown", "mousemove", "mouseup");
+
+            $("#"+self.canvasId).off("mousedown");
+            $("#"+self.canvasId).off("mousemove");
+            $("#"+self.canvasId).off("mouseup");
         });
     };
 
