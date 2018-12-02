@@ -37,6 +37,8 @@ $("#opencvJSFile").ready(function() {
     var app = new App();
     var tools = new Tools();
     var filter = new FilterManager();
+
+// SHIT: this should not be global!!!!!!!!!!!!!!!!!
     let text = new tools.Text();
     let pen = new tools.Pen();
 
@@ -110,9 +112,12 @@ $("#opencvJSFile").ready(function() {
     });
 
 
-    // Tools triggers
-    $("#triggerPen").click(function(){
+// Tools triggers
+    // PEN
+    $("#triggerPen").click(function() {
+    // SHIT: it should be in the pen.init()
         $("#penSize").css("display", "block");
+    // SHIT: changing object parameters directly
         pen.color = "#" + $(".jscolor")[0].value;
         pen.init();
         pen.size = parseInt($("#inputSize")[0].value);
@@ -121,6 +126,7 @@ $("#opencvJSFile").ready(function() {
         $("#penColor").change(function(){
             pen.color = "#" + $("#penColor")[0].value;
         });
+
         //change pen size
         $("#inputSize").change(function(){
             $("#size").val($("#inputSize")[0].value);
@@ -139,9 +145,12 @@ $("#opencvJSFile").ready(function() {
     });
 
     $("#triggerCutImg").click(function() {
+// SHIT: pen should destroy it self in other way.
+        pen.destroy();
         let imgCutter = new tools.ImgCutter("outputImg");
     });
 
+    // TEXT
     $("#triggerText").click(function(){
         let rect = $("#outputImg")[0].getBoundingClientRect();
         text.type = true;

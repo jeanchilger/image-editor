@@ -12,7 +12,7 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    },
+    };
 
     this.grayScale = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -24,7 +24,7 @@ function FilterManager() {
 
         dst.delete();
         src.delete();
-    },
+    };
 
     this.sepia = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -50,29 +50,7 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    },
-
-    this.sharpen = function(inputImg, outputImg) {
-        let src = cv.imread(inputImg);
-        let dst = new cv.Mat();
-
-        let array = [
-                    [-1, -1, -1],
-                    [-1, 9, -1],
-                    [-1, -1, -1]
-                ];
-        let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
-
-        let anchor = new cv.Point(-1, -1);
-        cv.filter2D(src, dst, cv.CV_8U, kernel,
-                    anchor, 0, cv.BORDER_DEFAULT);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-        kernel.delete();
-    },
+    };
 
     this.negative = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -94,7 +72,7 @@ function FilterManager() {
         cv.imshow(outputImg, dst);
         src.delete();
         dst.delete();
-    },
+    };
 
     this.pixelize = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -113,7 +91,7 @@ function FilterManager() {
         src.delete();
         small.delete();
         normal.delete();
-    },
+    };
 
     this.cartoon = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -154,7 +132,7 @@ function FilterManager() {
 
         src.delete();
         dsr.delete();
-    },
+    };
 
     this.sobel = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
@@ -182,7 +160,7 @@ function FilterManager() {
         gradx.delete(); grady.delete();
         absgx.delete(); absgy.delete();
         dst.delete();
-    },
+    };
 
     this.laplace = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);

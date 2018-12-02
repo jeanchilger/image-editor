@@ -2,7 +2,6 @@ function Tools(){
     // Tirar essa variável global!!;
     let canvas = $("#outputImg")[0];
     this.Pen = function(){
-        let context = canvas.getContext('2d');
         let paint = false;
         let prevX = null;
         let prevY = null;
@@ -11,18 +10,21 @@ function Tools(){
         let self = this;
 
         this.init = function(){
+            // self.alive = true;
+            self.context = canvas.getContext('2d');
+            $("#outputImg").on("mousedown", function(event) {
+                // if (self.alive) {
+                    let rect = $("#outputImg")[0].getBoundingClientRect();
+                    self.paint = true;
+                    self.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
+                    if(self.prevX == null){
+                        self.prevX = event.pageX - rect.left;
+                        self.prevY = event.pageY - rect.top;
+                    }
+                // }
+            });
 
-             $("#outputImg").mousedown(function(event){
-                let rect = $("#outputImg")[0].getBoundingClientRect();
-                self.paint = true;
-                self.drawPoint(event.pageX - rect.left, event.pageY - rect.top);
-                if(self.prevX == null){
-                    self.prevX = event.pageX - rect.left;
-                    self.prevY = event.pageY - rect.top;
-                }
-             });
-
-             $("#outputImg").mousemove(function(event){
+             $("#outputImg").on("mousemove", function(event) {
                  rect = $("#outputImg")[0].getBoundingClientRect();
                  if (self.paint){
                     if(self.prevX == null){
@@ -35,12 +37,12 @@ function Tools(){
                 }
              });
 
-             $("#outputImg").mouseup(function(event){
+             $("#outputImg").on("mouseup", function(event) {
                 self.paint = false;
                 self.prevX = null;
              });
 
-            $("#outputImg").mouseleave(function(event){
+            $("#outputImg").on("mouseleave", function(event) {
                 self.paint = false;
                 self.prevX = null;
                 self.prevY = null;
@@ -49,31 +51,45 @@ function Tools(){
         };
 
         this.draw = function(x, y){
-            context.strokeStyle = this.color;
-            context.lineJoin = "round";
 
-            context.lineWidth = this.size;
-            context.beginPath();
+            self.context.strokeStyle = this.color;
+            self.context.lineJoin = "round";
 
-            context.moveTo(this.prevX, this.prevY);
-            context.lineTo(x,y);
-            context.closePath();
-            context.stroke();
+            self.context.lineWidth = this.size;
+            self.context.beginPath();
+
+            self.context.moveTo(this.prevX, this.prevY);
+            self.context.lineTo(x,y);
+            self.context.closePath();
+            self.context.stroke();
+
         };
 
         this.drawPoint = function(x, y){
-            context.beginPath();
-            context.arc(x, y, this.size / 2, 0,2*Math.PI);
-            context.strokeStyle = this.color;
-            context.fillStyle = this.color;
-            context.fill();
-            context.lineWidth = 2;
-            context.strokeStyle = this.color;
+            self.context.beginPath();
+            self.context.arc(x, y, this.size / 2, 0,2*Math.PI);
+            self.context.strokeStyle = this.color;
+            self.context.fillStyle = this.color;
+            self.context.fill();
+            self.context.lineWidth = 2;
+            self.context.strokeStyle = this.color;
             //context.closePath();
-            context.stroke();
+            self.context.stroke();
         };
 
-    },
+        this.destroy = function() {
+            $("#outputImg").off("mousedown");
+            $("#outputImg").off("mousemove");
+            $("#outputImg").off("mouseup");
+            $("#outputImg").off("mouseleave");
+
+            self.paint = false;
+            // self.alive = false;
+            self.prevX = null;
+            self.prevY = null;
+            $("#penSize").css("display", "none");
+        };
+    };
 
     // RESIZE IMAGE
     this.ResizeImg = function(canvasId) {
@@ -158,7 +174,7 @@ function Tools(){
 
         let self = this;
 
-        $("#"+self.canvasId).mousedown(function(event) {
+        $("#"+self.canvasId).on("mousedown", function(event) {
             self.originX = event.pageX;
             self.originY = event.pageY;
             self.$cropArea = $("<div>", {id:"cropArea", "class":"crop-area"}, "</div>");
@@ -166,7 +182,7 @@ function Tools(){
             self.active = true;
         });
 
-        $("#"+self.canvasId).mousemove(function(event) {
+        $("#"+self.canvasId).on("mousemove", function(event) {
             if (self.active) {
                 let width = event.pageX - self.originX;
                 let height = event.pageY - self.originY;
@@ -178,20 +194,25 @@ function Tools(){
             }
         });
 
-        $("#"+self.canvasId).mouseup(function(event) {
+        $("#"+self.canvasId).on("mouseup", function(event) {
             self.active = false;
             let width = event.pageX - self.originX;
             let height = event.pageY - self.originY;
 
-            let src = cv.imread(self.canvasId);
             let rectOffset = $("#"+self.canvasId)[0].getBoundingClientRect();
-            let rect = new cv.Rect(self.originX - rectOffset.left, self.originY - rectOffset.top, width, height);
+            let top = (height < 0) ? (event.pageY - rectOffset.top) : (self.originY - rectOffset.top);
+            let left = (width < 0) ? (event.pageX - rectOffset.left) : (self.originX - rectOffset.left);
+
+            let src = cv.imread(self.canvasId);
+            let rect = new cv.Rect(left, top, Math.abs(width), Math.abs(height));
             let croppedImg = new cv.Mat();
-            console.log(rect);
             croppedImg = src.roi(rect);
             $("#cropArea").remove();
             cv.imshow(self.canvasId, croppedImg);
-            $("#"+self.canvasId).unbind("mousedown", "mousemove", "mouseup");
+
+            $("#"+self.canvasId).off("mousedown");
+            $("#"+self.canvasId).off("mousemove");
+            $("#"+self.canvasId).off("mouseup");
         });
     };
 
