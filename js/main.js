@@ -81,6 +81,10 @@ $("#opencvJSFile").ready(function() {
         filter.negative("outputImg", "outputImg");
     });
 
+    $("#triggerCartoon").click(function() {
+        filter.cartoon("outputImg", "outputImg");
+    });
+
     // Binarization triggers
     $("#triggerTresh").click(function() {
         filter.thresholding("outputImg", "outputImg");
@@ -94,17 +98,17 @@ $("#opencvJSFile").ready(function() {
         filter.laplace("outputImg", "outputImg");
     });
 
-    $("#triggerFaceDetect").click(function() {
-        filter.faceDetect("outputImg", "outputImg");
+    $("#triggerCanny").click(function() {
+        filter.canny("outputImg", "outputImg");
     });
 
-    // Morphological operations triggers
-    $("#triggerDilate").click(function() {
-        filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());
-    });
+    // Morphological operation trigger
+    $("#triggerMorphTransform").click(function() {
+        let mType = $("#morphType").val();
+        let kSize = $("#kerSize").val();
+        let kShape = $("#kerShape").val();
 
-    $("#triggerErode").click(function() {
-        filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
+        filter.morphTransform("outputImg", "outputImg", mType, kSize, kShape);
     });
 
 
@@ -134,8 +138,13 @@ $("#opencvJSFile").ready(function() {
         });
     });
 
-    // CUT IMAGE
-    $("#triggerCutImg").click(function(){
+    $("#btnResizeImg").click(function() {
+        let resImg = new tools.ResizeImg("outputImg");
+        resImg.initModal();
+        resImg.doResize();
+    });
+
+    $("#triggerCutImg").click(function() {
 // SHIT: pen should destroy it self in other way.
         pen.destroy();
         let imgCutter = new tools.ImgCutter("outputImg");
