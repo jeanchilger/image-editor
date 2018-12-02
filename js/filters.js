@@ -1,4 +1,5 @@
 function FilterManager() {
+// FILTERS
     this.blur = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
@@ -14,7 +15,6 @@ function FilterManager() {
     },
 
     this.grayScale = function(inputImg, outputImg) {
-        console.log("DOMAIN: ", document.domain);
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
 
@@ -50,60 +50,6 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    },
-
-    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.dilate(src, dst, kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    },
-
-    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.erode(src, dst, kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    },
-
-    this.sharpen = function(inputImg, outputImg) {
-        let src = cv.imread(inputImg);
-        let dst = new cv.Mat();
-
-        let array = [
-                    [-1, -1, -1],
-                    [-1, 9, -1],
-                    [-1, -1, -1]
-                ];
-        let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
-
-        let anchor = new cv.Point(-1, -1);
-        cv.filter2D(src, dst, cv.CV_8U, kernel,
-                    anchor, 0, cv.BORDER_DEFAULT);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-        kernel.delete();
     },
 
     this.negative = function(inputImg, outputImg) {
@@ -147,6 +93,7 @@ function FilterManager() {
         normal.delete();
     },
 
+// BINARIZATION
     this.thresholding = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
@@ -205,44 +152,6 @@ function FilterManager() {
 
         src.delete();
         dst.delete();
-    },
-
-    this.faceDetect = function(inputImg, outputImg) {
-        let src = cv.imread(inputImg);
-        let gray = new cv.Mat();
-        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-
-        // creates the .xml file to load it
-        let utils = new Utils();
-        let faceCascade = new cv.CascadeClassifier();
-
-        let faceCascadeFile = "js/haarcascade_frontalface_default.xml";
-        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-            faceCascade.load(faceCascadeFile);
-        });
-
-        // loads the .xml haar cascade
-        let faces = new cv.RectVector();
-        // console.log(faceCascade);
-
-        let size = new cv.Size(0, 0);
-        // detect the faces and put it on faces;
-        faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, size, size);
-        // iterates over the found faces
-        for (let i=0; i < faces.size(); i++) {
-
-            // build the rect in red color
-            let point1 = new cv.Point(faces.get(i).x, faces.get(i).y);
-            let point2 = new cv.Point(faces.get(i).x + faces.get(i).width,
-                                      faces.get(i).y + faces.get(i).height);
-            cv.rectangle(src, point1, point2, [255, 0, 0, 255]);
-        }
-
-        cv.imshow(outputImg, src);
-        src.delete();
-        gray.delete();
-        faces.delete();
-        faceCascade.delete();
     };
 
     this.canny = function(inputImg, outputImg) {
@@ -258,6 +167,38 @@ function FilterManager() {
         cv.imshow(outputImg, dst);
         src.delete();
         dst.delete();
+    };
 
+// MORPHOLOGICAL OPERATIONS
+    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
+
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+
+        cv.dilate(src, dst, kernel);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    },
+
+    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
+
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+
+        cv.erode(src, dst, kernel);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
     }
 };
