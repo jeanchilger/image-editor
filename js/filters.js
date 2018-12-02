@@ -52,6 +52,76 @@ function FilterManager() {
         dst.delete();
     },
 
+    this.morphTransform = function(inputImg, outputImg, morphType, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
+
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+
+        cv.morphologyEx(src, dst, parseInt(morphType, 10), kernel);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    };
+
+    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
+
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+
+        cv.dilate(src, dst, kernel);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    },
+
+    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
+        let src = cv.imread("inputImg");
+        let dst = new cv.Mat();
+
+        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
+        let shape = parseInt(kerShape, 10);
+        let kernel = cv.getStructuringElement(shape, size);
+
+        cv.erode(src, dst, kernel);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+    },
+
+    this.sharpen = function(inputImg, outputImg) {
+        let src = cv.imread(inputImg);
+        let dst = new cv.Mat();
+
+        let array = [
+                    [-1, -1, -1],
+                    [-1, 9, -1],
+                    [-1, -1, -1]
+                ];
+        let kernel = cv.matFromArray(3, 3, cv.CV_8U, array);
+
+        let anchor = new cv.Point(-1, -1);
+        cv.filter2D(src, dst, cv.CV_8U, kernel,
+                    anchor, 0, cv.BORDER_DEFAULT);
+
+        cv.imshow(outputImg, dst);
+
+        src.delete();
+        dst.delete();
+        kernel.delete();
+    },
+
     this.negative = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = src.clone();

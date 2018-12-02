@@ -67,6 +67,11 @@ img {
 
 }
 
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .input-file {
     display: none;
 }
