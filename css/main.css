@@ -51,6 +51,7 @@ img {
 }
 
 .output-img {
+
     position: relative;
 
 }
@@ -95,6 +96,8 @@ img {
     border: 2px solid black;
     position: absolute;
     z-index: 999;
+    pointer-events: none;
+
 
 }
 
