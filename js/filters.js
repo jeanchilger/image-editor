@@ -52,54 +52,6 @@ function FilterManager() {
         dst.delete();
     },
 
-    this.morphTransform = function(inputImg, outputImg, morphType, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.morphologyEx(src, dst, parseInt(morphType, 10), kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    };
-
-    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.dilate(src, dst, kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    },
-
-    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.erode(src, dst, kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    },
-
     this.sharpen = function(inputImg, outputImg) {
         let src = cv.imread(inputImg);
         let dst = new cv.Mat();
@@ -239,36 +191,25 @@ function FilterManager() {
         dst.delete();
     };
 
-// MORPHOLOGICAL OPERATIONS
-    this.dilate = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
+// MORPHOLOGIC OPERATIONS
+    this.morphTransform = function(inputImg, outputImg, morphType, kerSize, kerShape) {
+        let src = cv.imread(inputImg);
         let dst = new cv.Mat();
+
+        cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+        cv.adaptiveThreshold(src, src, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+                             cv.THRESH_BINARY, 21, 2);
 
         let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
         let shape = parseInt(kerShape, 10);
         let kernel = cv.getStructuringElement(shape, size);
 
-        cv.dilate(src, dst, kernel);
+        cv.morphologyEx(src, dst, parseInt(morphType, 10), kernel);
 
         cv.imshow(outputImg, dst);
 
         src.delete();
         dst.delete();
-    },
-
-    this.erode = function(inputImg, outputImg, kerSize, kerShape) {
-        let src = cv.imread("inputImg");
-        let dst = new cv.Mat();
-
-        let size = new cv.Size(parseInt(kerSize, 10), parseInt(kerSize, 10));
-        let shape = parseInt(kerShape, 10);
-        let kernel = cv.getStructuringElement(shape, size);
-
-        cv.erode(src, dst, kernel);
-
-        cv.imshow(outputImg, dst);
-
-        src.delete();
-        dst.delete();
-    }
+    };
 };

@@ -96,16 +96,14 @@ $("#opencvJSFile").ready(function() {
         filter.canny("outputImg", "outputImg");
     });
 
-    // Morphological operations triggers
-    $("#triggerDilate").click(function() {
-        filter.dilate("outputImg", "outputImg", $("#kerSizeD").val(), $("#kerShapeD").val());
-    });
+    // Morphological operation trigger
+    $("#triggerMorphTransform").click(function() {
+        let mType = $("#morphType").val();
+        let kSize = $("#kerSize").val();
+        let kShape = $("#kerShape").val();
 
-    $("#triggerErode").click(function() {
-        filter.erode("outputImg", "outputImg", $("#kerSizeE").val(), $("#kerShapeE").val());
+        filter.morphTransform("outputImg", "outputImg", mType, kSize, kShape);
     });
-
-    // Color triggers
 
 
     // Tools triggers
