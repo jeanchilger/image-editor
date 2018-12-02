@@ -52,7 +52,7 @@ img {
 
 .output-img {
     position: relative;
-    border: 2px solid red;
+
 }
 
 .tool-box {
@@ -65,6 +65,11 @@ img {
     margin-top: .9vh;
     padding: 0.6vh;
 
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .input-file {
@@ -90,7 +95,7 @@ img {
     border: 2px solid black;
     position: absolute;
     z-index: 999;
-    
+
 }
 
 #penSize{
