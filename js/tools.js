@@ -1,5 +1,5 @@
 function Tools(){
-    // Tirar essa variável global!!;
+    // Global variable??
     let canvas = $("#outputImg")[0];
     this.Pen = function(){
         let paint = false;
@@ -10,7 +10,6 @@ function Tools(){
         let self = this;
 
         this.init = function(){
-            // self.alive = true;
             self.context = canvas.getContext('2d');
             $("#outputImg").on("mousedown", function(event) {
                 // if (self.alive) {
@@ -104,7 +103,7 @@ function Tools(){
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Resize Imgae</h5>
+                        <h5 class="modal-title" id="modalCenterTitle">Resize Image</h5>
                         <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </a>
@@ -160,8 +159,78 @@ function Tools(){
         }
     }
 
+    // ROTATE
+    this.RotateImg = function(canvasId) {
+        /*
+         * Object responsable for rotate a image.
+         * The id of the canvas is passed for allow get it.
+         * */
+
+        this.canvasId = canvasId;
+        this.modalSRC = `
+        <div class="modal fade" id="rotateModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Rotate Image</h5>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="angle">Angle (in degrees)</label>
+                            <input type="number" class="form-control" id="angle" min="1">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="triggerRotateImg">Rotate</button>
+                    </div>
+                </div>
+             </div>
+        </div>`;
+        let self = this;
+
+        this.initModal = function() {
+            /*
+             * Displays the modal with the options to rotate the image.
+             * */
+
+            $("html").append(self.modalSRC);
+
+            $("#rotateModal").modal();
+        },
+
+        this.doRotation = function() {
+            /*
+             * Adds the event listeners to the ALREADY CREATED modal.
+             * */
+
+            $("#triggerRotateImg").click(function() {
+                let src = cv.imread(self.canvasId);
+                let dst = new cv.Mat();
+
+                let center = new cv.Point(src.cols / 2, src.rows / 2);
+                let dsize = new cv.Size(src.rows, src.cols);
+                
+                let transform = cv.getRotationMatrix2D(center, parseInt($("#angle").val()), 1);
+                cv.warpAffine(src, dst, transform, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+                cv.imshow(self.canvasId, dst);
+
+                src.delete();
+                dst.delete();
+            });
+        }
+    }
+
     // CUT IMAGE
     this.ImgCutter = function(canvasId) {
+        /*
+         * Object responsable for cut a image in a marked region.
+         */
         this.originX = null;
         this.originY = null;
         this.canvasId = canvasId;
@@ -233,5 +302,42 @@ function Tools(){
             context.fillStyle = this.color;
             context.fillText($("#textContent").val(), this.x, this.y);
         };
-    }
+    };
+
+    this.HorizontalFlip = function(canvasId) {
+        /*
+         * Object responsable for perform the horizontal flip.
+        */
+
+        this.canvasId = canvasId;
+
+        let src = cv.imread(canvasId);
+        let dst = new cv.Mat();
+
+        cv.flip(src, dst, 1);
+
+        cv.imshow(canvasId, dst);
+
+        src.delete();
+        dst.delete();
+    };
+
+    this.VerticalFlip = function(canvasId) {
+        /*
+         * Object responsable for perform the vertical flip.
+        */
+
+        this.canvasId = canvasId;
+
+        let src = cv.imread(canvasId);
+        let dst = new cv.Mat();
+
+        cv.flip(src, dst, 0);
+
+        cv.imshow(canvasId, dst);
+
+        src.delete();
+        dst.delete();
+    };
+
 };
