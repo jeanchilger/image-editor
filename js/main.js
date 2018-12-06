@@ -134,12 +134,14 @@ $("#opencvJSFile").ready(function() {
     });
 
     $("#btnResizeImg").click(function() {
+        pen.destroy();
         let resImg = new tools.ResizeImg("outputImg");
         resImg.initModal();
         resImg.doResize();
     });
 
     $("#btnRotateImg").click(function() {
+        pen.destroy();
         let resImg = new tools.RotateImg("outputImg");
         resImg.initModal();
         resImg.doRotation();
@@ -153,6 +155,7 @@ $("#opencvJSFile").ready(function() {
 
     // TEXT
     $("#triggerText").click(function(){
+        pen.destroy();
         let rect = $("#outputImg")[0].getBoundingClientRect();
         text.type = true;
 
@@ -181,10 +184,12 @@ $("#opencvJSFile").ready(function() {
     });
 
     $("#triggerHorizontalFlip").click(function() {
+        pen.destroy();
         let hFlip = new tools.HorizontalFlip("outputImg");
     });
 
     $("#triggerVerticalFlip").click(function() {
+        pen.destroy();
         let vFlip = new tools.VerticalFlip("outputImg");
     });
 });

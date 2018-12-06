@@ -156,6 +156,15 @@ function Tools(){
                 src.delete();
                 dst.delete();
             });
+
+            $("#heightSize").change(function() {
+                let ratio = parseInt($("#heightSize").val(), 10) / parseInt($("#widthSize").val(), 10);
+                let width = parseInt($("#heightSize").val(), 10) * ratio;
+                $("#widthSize").val(width);
+
+            });
+
+
         }
     }
 
@@ -215,7 +224,7 @@ function Tools(){
 
                 let center = new cv.Point(src.cols / 2, src.rows / 2);
                 let dsize = new cv.Size(src.rows, src.cols);
-                
+
                 let transform = cv.getRotationMatrix2D(center, parseInt($("#angle").val()), 1);
                 cv.warpAffine(src, dst, transform, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
                 cv.imshow(self.canvasId, dst);
