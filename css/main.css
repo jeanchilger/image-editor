@@ -98,7 +98,10 @@ img {
     z-index: 999;
     pointer-events: none;
 
+}
 
+.v {
+    transform: rotate(90deg);
 }
 
 #penSize{

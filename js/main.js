@@ -38,7 +38,6 @@ $("#opencvJSFile").ready(function() {
     var tools = new Tools();
     var filter = new FilterManager();
 
-// SHIT: this should not be global!!!!!!!!!!!!!!!!!
     let text = new tools.Text();
     let pen = new tools.Pen();
 
@@ -71,10 +70,6 @@ $("#opencvJSFile").ready(function() {
 
     $("#triggerPixelize").click(function() {
         filter.pixelize("outputImg", "outputImg");
-    });
-
-    $("#triggerSharpen").click(function() {
-        filter.sharpen("outputImg", "outputImg");
     });
 
     $("#triggerNegative").click(function() {
@@ -144,6 +139,12 @@ $("#opencvJSFile").ready(function() {
         resImg.doResize();
     });
 
+    $("#btnRotateImg").click(function() {
+        let resImg = new tools.RotateImg("outputImg");
+        resImg.initModal();
+        resImg.doRotation();
+    });
+
     $("#triggerCutImg").click(function() {
 // SHIT: pen should destroy it self in other way.
         pen.destroy();
@@ -177,6 +178,14 @@ $("#opencvJSFile").ready(function() {
                 $("#textTool").css("display", "none");
             }
         });
+    });
+
+    $("#triggerHorizontalFlip").click(function() {
+        let hFlip = new tools.HorizontalFlip("outputImg");
+    });
+
+    $("#triggerVerticalFlip").click(function() {
+        let vFlip = new tools.VerticalFlip("outputImg");
     });
 });
 
