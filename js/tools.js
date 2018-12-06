@@ -110,6 +110,11 @@ function Tools(){
                     </div>
 
                     <div class="modal-body">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="ratioLocked">
+                            <label class="custom-control-label" for="ratioLocked">Lock proportion</label>
+                        </div>
+                        <br>
                         <div class="form-group">
                             <label for="heightSize">Height</label>
                             <input type="number" class="form-control" id="heightSize" min="1">
@@ -135,6 +140,7 @@ function Tools(){
             $("html").append(self.modalSRC);
             let width = $("#"+self.canvasId).width();
             let height = $("#"+self.canvasId).height();
+            self.ratio = parseFloat(width) / parseFloat(height);
             $("#widthSize").val(width);
             $("#heightSize").val(height);
             $("#resizeModal").modal();
@@ -155,6 +161,26 @@ function Tools(){
 
                 src.delete();
                 dst.delete();
+            });
+
+            $("#ratioLocked").change(function() {
+                let width = parseInt($("#widthSize").val());
+                let height = parseInt($("#heightSize").val());
+                self.ratio = parseFloat(width) / parseFloat(height);
+            });
+
+            $("#heightSize").change(function() {
+                if ($("#ratioLocked").is(":checked")) {
+                    let width = Math.ceil($("#heightSize").val() * self.ratio);
+                    $("#widthSize").val(width);
+                }
+            });
+
+            $("#widthSize").change(function() {
+                if ($("#ratioLocked").is(":checked")) {
+                    let height = Math.ceil($("#widthSize").val() / self.ratio);
+                    $("#heightSize").val(height);
+                }
             });
         }
     }
@@ -215,7 +241,7 @@ function Tools(){
 
                 let center = new cv.Point(src.cols / 2, src.rows / 2);
                 let dsize = new cv.Size(src.rows, src.cols);
-                
+
                 let transform = cv.getRotationMatrix2D(center, parseInt($("#angle").val()), 1);
                 cv.warpAffine(src, dst, transform, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
                 cv.imshow(self.canvasId, dst);
@@ -297,8 +323,6 @@ function Tools(){
             var context = canvas.getContext("2d");
             context.font = this.size+this.font;
             //context.font = "30px Comic Sans MS";
-            console.log(this.size+this.font);
-            console.log(this.color);
             context.fillStyle = this.color;
             context.fillText($("#textContent").val(), this.x, this.y);
         };
