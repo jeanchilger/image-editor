@@ -109,12 +109,12 @@ function Tools(){
                         </a>
                     </div>
 
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="ratioLocked">
-                        <label class="custom-control-label" for="ratioLocked">Lock proportion</label>
-                    </div>
-
                     <div class="modal-body">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="ratioLocked">
+                            <label class="custom-control-label" for="ratioLocked">Lock proportion</label>
+                        </div>
+                        <br>
                         <div class="form-group">
                             <label for="heightSize">Height</label>
                             <input type="number" class="form-control" id="heightSize" min="1">
@@ -167,8 +167,6 @@ function Tools(){
                 let width = parseInt($("#widthSize").val());
                 let height = parseInt($("#heightSize").val());
                 self.ratio = parseFloat(width) / parseFloat(height);
-                console.log(self.ratio);
-
             });
 
             $("#heightSize").change(function() {
@@ -325,8 +323,6 @@ function Tools(){
             var context = canvas.getContext("2d");
             context.font = this.size+this.font;
             //context.font = "30px Comic Sans MS";
-            console.log(this.size+this.font);
-            console.log(this.color);
             context.fillStyle = this.color;
             context.fillText($("#textContent").val(), this.x, this.y);
         };
