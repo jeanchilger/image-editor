@@ -8,9 +8,36 @@ The algorithms and techniques were in the most developed at the [UFFS](https://w
 
 ## Core Functionalities
 
-- a
-- b
-- c
+- General Tools:
+  - Pen
+  - Resize
+  - Rotate
+  - Cut Image
+  - Text
+  - Flip vertically and horizontally
+  
+- Filters:
+  - Blur
+  - Pixelize
+  - Sepia
+  - Gray Scale
+  - Negative
+  - Cartoon
+  
+- Binarization
+  - Thresholding
+  - Laplace
+  - Sobel
+  - Canny
+  
+- Morpholigical Operations
+  - Erosion
+  - Dilation
+  - Opening
+  - Closing
+  - Morphological Gradient
+  - Top Hat
+  - Black Hat
 
 ## Usage
 
@@ -33,12 +60,3 @@ open index.html
 ```
 
 Or simply [download](https://github.com/JeanCHilger/image-editor/archive/master.zip) and decompress the zip file and open the `index.html` file with any browser.
-
-## Free images repository
-```
-https://github.com/PauloGSC/free-images
-```
-
-#Install opencv in Node
-- npm install --save opencv4nodejs
-- require("opencv4nodejs");
