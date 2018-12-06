@@ -109,6 +109,11 @@ function Tools(){
                         </a>
                     </div>
 
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ratioLocked">
+                        <label class="custom-control-label" for="ratioLocked">Lock proportion</label>
+                    </div>
+
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="heightSize">Height</label>
@@ -135,6 +140,7 @@ function Tools(){
             $("html").append(self.modalSRC);
             let width = $("#"+self.canvasId).width();
             let height = $("#"+self.canvasId).height();
+            self.ratio = parseFloat(width) / parseFloat(height);
             $("#widthSize").val(width);
             $("#heightSize").val(height);
             $("#resizeModal").modal();
@@ -157,14 +163,27 @@ function Tools(){
                 dst.delete();
             });
 
-            $("#heightSize").change(function() {
-                let ratio = parseInt($("#heightSize").val(), 10) / parseInt($("#widthSize").val(), 10);
-                let width = parseInt($("#heightSize").val(), 10) * ratio;
-                $("#widthSize").val(width);
+            $("#ratioLocked").change(function() {
+                let width = parseInt($("#widthSize").val());
+                let height = parseInt($("#heightSize").val());
+                self.ratio = parseFloat(width) / parseFloat(height);
+                console.log(self.ratio);
 
             });
 
+            $("#heightSize").change(function() {
+                if ($("#ratioLocked").is(":checked")) {
+                    let width = Math.ceil($("#heightSize").val() * self.ratio);
+                    $("#widthSize").val(width);
+                }
+            });
 
+            $("#widthSize").change(function() {
+                if ($("#ratioLocked").is(":checked")) {
+                    let height = Math.ceil($("#widthSize").val() / self.ratio);
+                    $("#heightSize").val(height);
+                }
+            });
         }
     }
 
