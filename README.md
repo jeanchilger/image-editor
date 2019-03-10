@@ -6,6 +6,8 @@
 A simple web based image editor implemented in order to apply some Computer Vision algorithms and techniques.
 The algorithms and techniques were in the most developed at the [UFFS](https://www.uffs.edu.br/campi/chapeco)' *computer vision study group*.
 
+Developed by [JeanCHilger](https://github.com/JeanCHilger), [Junior-16](https://github.com/Junior-16) and [PauloGSC](https://github.com/PauloGSC).
+
 ## Core Functionalities
 
 - General Tools:
